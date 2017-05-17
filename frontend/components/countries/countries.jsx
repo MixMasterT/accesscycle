@@ -7,9 +7,12 @@ class Countries extends React.Component {
 
   render() {
     return (
-      <ul>
-        {this.props.countriesList.map((country) => <li key={country} >{country}</li> )}
-      </ul>
+      <div className={'countries'}>
+        <ul>
+          {this.props.countriesList.map((country, idx) => <li key={idx}>{country}</li>)}
+        </ul>
+        <img src='https://upload.wikimedia.org/wikipedia/commons/9/9b/Upright_urban_bicyclist.svg' />
+      </div>
     );
   }
 }
