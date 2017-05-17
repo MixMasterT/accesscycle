@@ -25,6 +25,12 @@ in a compelling way.
 1. The most significant limitation was time. I was unable to make this into
 what I wanted it to be in a reasonable amount of time.
 
+## How to Run
+In order to test this out, simply clone the repo, run 'yarn install' or
+'npm install' and then run 'yarn start' or 'npm start'. A dev server should
+be fired up and you will be able to view the current state of this project
+through a browser at localhost:8080. 
+
 ## Intentions
 
 This project was very open-ended, and that is a problem for me. I spent
@@ -46,4 +52,4 @@ click on a city or country and view a list of the bicycle rental networks
 that are available in that city or country. Clicking on any of the listed
 networks will then reveal a map with all of the bicycle racks in that network
 and the pins for those racks will show how many bikes and docking slots are
-available at each rack location. 
+available at each rack location.
