@@ -8,11 +8,8 @@ const getCoordsObj = latLng => ({
 class Map extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      homeMarker: null,
-      bikeMarkers: [],
-      slotMarkers: [],
+      jobMarkers: []
     }
 
     this.addHomeMarker = this.addHomeMarker.bind(this);
@@ -20,8 +17,41 @@ class Map extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getNetworks();
+    let mapOptions = {
+      center: { lat: 37.773972, lng: -122.431297 },
+      zoom: 12
+    }
+
+    navigator.geolocation.getCurrentPosition((loc) => {
+      if (loc.coords.latitude) {
+        this.map.setCenter(new google.maps.LatLng(loc.coords.latitude,
+                                                loc.coords.longitude));
+        this.addHomeMarker(loc.coords.latitude, loc.coords.longitude);
+      }
+    })
+
+    this.map = new google.maps.Map(this.mapNode, mapOptions)
+
+    google.maps.event.addListener(this.map, 'idle', () => {
+      const mapBounds = this.map.getBounds();
+      const northEast = mapBounds.getNorthEast();
+      const southWest = mapBounds.getSouthWest();
+      const bounds = {
+        northEast: getCoordsObj(northEast),
+        southWest: getCoordsObj(southWest)
+      }
+      const locFilter = { bounds };
+    })
+
+
+    const markers = {
+      'pending': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%24|00FF00',
+      'designated': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=J|FFFF00',
+      'fulfilled': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=F|FF00FF',
+      'unfulfilled': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=U|FF0000',
+    }
   }
+
 
   addHomeMarker(lat, lng) {
     if (this.state.homeMarker) { this.state.homeMarker.setMap(null); }
@@ -38,10 +68,12 @@ class Map extends React.Component {
 
   render() {
     return (
-      <div>
-        Map
+      <div className='map-component'>
+        <h2> Bicycle Map </h2>
+        <div className="map" ref={ map => this.mapNode = map }
+        ></div>
       </div>
-    );
+    )
   }
 }
 

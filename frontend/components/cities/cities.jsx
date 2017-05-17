@@ -5,8 +5,8 @@ class Cities extends React.Component {
     super(props);
   }
 
-  componentWillReceiveProps(props) {
-    console.log(props.citiesList);
+  componentDidMount() {
+    this.props.getNetworks();
   }
 
   render() {

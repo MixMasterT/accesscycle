@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, history } from 'react-router-dom';
 
-import App from './app.jsx';
+import App from './app';
 
 import Map from './map/map_container';
 import Countries from './countries/countries_container';

@@ -5,6 +5,10 @@ class Countries extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.getNetworks();
+  }
+
   render() {
     return (
       <div className={'countries'}>

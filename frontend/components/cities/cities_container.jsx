@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Cities from './cities.jsx';
 
 import { citiesFromNetworks } from '../../util/selectors';
+import { getNetworks } from '../../actions/network_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   citiesList: citiesFromNetworks(state.networks),
@@ -10,7 +11,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  // your code here...
+  getNetworks: () => dispatch(getNetworks()),
 });
 
 export default connect(

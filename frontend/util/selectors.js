@@ -29,6 +29,20 @@ export const countriesFromNetworks = (networksArr) => {
   return countriesArr;
 }
 
+export const networksByCity = (city, networksArr) => {
+  return networksArr.filter((network) => network.location.city === city);
+}
+
+export const networksByCountry = (country, networksArr) => {
+  let countryCode = "";
+  Object.keys(countryNameMap).forEach((k) => {
+    if (countryNameMap[k] === country) {
+      countryCode = k;
+    }
+  })
+  return networksArr.filter((network) => network.location.country === k);
+}
+
 const countryNameMap = {
   "BD": "Bangladesh",
   "BE": "Belgium",
