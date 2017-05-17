@@ -3,17 +3,26 @@ import React from 'react';
 class Countries extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleCountryClick = this.handleCountryClick.bind(this);
   }
 
   componentDidMount() {
     this.props.getNetworks();
   }
 
+  handleCountryClick(country) {
+    return e => this.props.setCountry(country);
+  }
   render() {
     return (
-      <div className={'countries'}>
+      <div className='countries'>
         <ul>
-          {this.props.countriesList.map((country, idx) => <li key={idx}>{country}</li>)}
+          {this.props.countriesList.map((country, idx) => (
+            <li key={idx} onClick={this.handleCountryClick(country)}>
+              {country}
+            </li>)
+          )}
         </ul>
         <img src='https://upload.wikimedia.org/wikipedia/commons/9/9b/Upright_urban_bicyclist.svg' />
       </div>

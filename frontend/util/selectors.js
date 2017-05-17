@@ -40,7 +40,7 @@ export const networksByCountry = (country, networksArr) => {
       countryCode = k;
     }
   })
-  return networksArr.filter((network) => network.location.country === k);
+  return networksArr.filter((network) => network.location.country === countryCode);
 }
 
 const countryNameMap = {

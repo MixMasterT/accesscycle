@@ -2,8 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Networks from './networks.jsx';
 
+import { networksByCity, networksByCountry } from '../../util/selectors';
+
 const mapStateToProps = (state, ownProps) => ({
-  // your code here...
+  nearbyNetworks: (state.city === "" ?
+                        (state.country === "" ? [] :
+                        networksByCountry(state.country, state.networks)
+                    ): networksByCity(state.city, state.networks)
+                  ),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -12,5 +18,5 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Networks);

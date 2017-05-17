@@ -11,10 +11,10 @@ class Networks extends React.Component {
         <h3>Nearby Bicycle Rental Networks</h3>
         <ul>
           {this.props.nearbyNetworks.map((nearNetwork) => (
-            <li>
+            <li key={nearNetwork.id}>
               {nearNetwork.company}
             </li>)
-          }
+          )}
         </ul>
       </div>
     );
