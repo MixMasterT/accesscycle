@@ -8,7 +8,7 @@ const receiveNetwork = networkId => ({
   networkId
 });
 
-const receiveNetworks = () => ({
+const receiveNetworks = networks => ({
   type: RECEIVE_NETWORKS,
   networks
 });

@@ -12,4 +12,13 @@ This Website shows where bike rental is available, and gives information
 about the availability of bikes and bike locking stations. Data for this
 frontend project is draws from the [CityBikes API](http://api.citybik.es/v2/)
 
-##
+## Complications Along the Way
+
+1. The first complication was choosing the information to show. Exploring
+possibilities available through the provided list of open-apis I settled
+on the CityBikes API because I love environmentally friendly products, and
+leisure sports.
+
+1. The second challenge was to determine how I might provide this information
+in a compelling way. I figured that allowing user to search by city or country
+and defaulting 

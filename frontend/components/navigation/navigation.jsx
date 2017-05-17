@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 const Navigation = (props) => (
   <navigation>
-    <div className='user-location'>Your Location</div>
-    <div className='countries'>Countries</div>
-    <div className='cities'>Cities</div>
+    <Link to='map'>Your Location</Link>
+    <Link to='countries'>Countries</Link>
+    <Link to='cities'>Cities</Link>
   </navigation>
 );
 
