@@ -1,3 +1,4 @@
+// gives array of city name strings
 export const citiesFromNetworks = (networksArr) => {
   const cities = new Set();
   networksArr.forEach((network) => {
@@ -13,6 +14,7 @@ export const citiesFromNetworks = (networksArr) => {
   return orderedCities;
 }
 
+// gives array of country name strings
 export const countriesFromNetworks = (networksArr) => {
   const countries = new Set();
   networksArr.forEach((network) => {
@@ -29,10 +31,12 @@ export const countriesFromNetworks = (networksArr) => {
   return countriesArr;
 }
 
+// gives array of network objects in the given city
 export const networksByCity = (city, networksArr) => {
   return networksArr.filter((network) => network.location.city === city);
 }
 
+// gives array of network objects in the given country
 export const networksByCountry = (country, networksArr) => {
   let countryCode = "";
   Object.keys(countryNameMap).forEach((k) => {
@@ -41,6 +45,11 @@ export const networksByCountry = (country, networksArr) => {
     }
   })
   return networksArr.filter((network) => network.location.country === countryCode);
+}
+
+// gives array of network objects in the rectangular latlng bounds
+export const networksInBounds = (bounds, networksArr) => {
+
 }
 
 const countryNameMap = {
