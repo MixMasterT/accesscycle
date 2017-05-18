@@ -49,7 +49,7 @@ export const networksByCountry = (country, networksArr) => {
 
 // gives array of network objects in the rectangular latlng bounds
 export const networksInBounds = (bounds, networksArr) => {
-
+  
 }
 
 const countryNameMap = {

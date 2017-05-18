@@ -40,6 +40,7 @@ class Map extends React.Component {
         northEast: getCoordsObj(northEast),
         southWest: getCoordsObj(southWest)
       }
+      console.log(bounds);
       const locFilter = { bounds };
     })
 
