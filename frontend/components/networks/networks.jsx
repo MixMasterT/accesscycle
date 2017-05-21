@@ -12,7 +12,7 @@ class Networks extends React.Component {
         <ul>
           {this.props.nearbyNetworks.map((nearNetwork) => (
             <li key={nearNetwork.id}>
-              {nearNetwork.company}
+              {nearNetwork.name}
             </li>)
           )}
         </ul>

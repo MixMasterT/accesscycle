@@ -22,6 +22,16 @@ leisure sports.
 1. The second challenge was to determine how I might provide this information
 in a compelling way.
 
+1. After setting up a basic list of cities and countries that have bike
+rental, I created a component to show what networks are available in a given
+country or city by clicking on that country or city. However, this resulted
+in duplicate network names, since the API provides a separate network object
+for each municipal location of that network. I want this to be reflected as
+a single network from the level of a country-wide filter. I decided to take
+advantage of Underscore.js Array function 'uniq' that filters out duplicates
+on the names list only. This required a slight refactoring of what I passed
+in to the networks React component.
+
 1. The most significant limitation was time. I was unable to make this into
 what I wanted it to be in a reasonable amount of time.
 
@@ -29,7 +39,7 @@ what I wanted it to be in a reasonable amount of time.
 In order to test this out, simply clone the repo, run 'yarn install' or
 'npm install' and then run 'yarn start' or 'npm start'. A dev server should
 be fired up and you will be able to view the current state of this project
-through a browser at localhost:8080. 
+through a browser at localhost:8080.
 
 ## Intentions
 

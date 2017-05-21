@@ -41,7 +41,7 @@ class Map extends React.Component {
         southWest: getCoordsObj(southWest)
       }
       console.log(bounds);
-      const locFilter = { bounds };
+      this.props.updateBounds(bounds);
     })
 
 
