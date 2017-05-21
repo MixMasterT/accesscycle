@@ -6,3 +6,9 @@
 @import './components/navigation.scss';
 @import './components/map.scss';
 @import './components/networks.scss';
+
+// shared styles
+.countries, .cities {
+  float: left;
+  margin-left: 1em;
+}

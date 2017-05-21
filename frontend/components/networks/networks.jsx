@@ -8,10 +8,13 @@ class Networks extends React.Component {
   render() {
     return (
       <div className='networks'>
-        <h3>Nearby Bicycle Rental Networks</h3>
+        <h3>Nearby Bicycle Networks</h3>
         <ul>
           {this.props.nearbyNetworks.map((nearNetwork) => (
-            <li key={nearNetwork.id}>
+            <li
+              key={nearNetwork.id}
+              onClick={() => {console.log(nearNetwork.id);}}
+              >
               {nearNetwork.name}
             </li>)
           )}
