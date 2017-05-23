@@ -9,13 +9,14 @@ import Networks from './networks/networks_container';
 import Map from './map/map_container';
 
 const App = ({ children }) => (
-  <div>
+  <div className='app'>
     <h1>World Bikes</h1>
     <Navigation />
-    { children }
-    <Map />
-    <Networks />
-
+    <main className='main'>
+      { children }
+      <Map />
+      <Networks />
+    </main>
     <Footer />
   </div>
 );
