@@ -15,9 +15,7 @@ import Networks from './networks/networks_container';
 const App = ({ children }) => (
   <div className='app'>
     <h1>CycleList</h1>
-
     <Main />
-
     <Footer />
   </div>
 );
