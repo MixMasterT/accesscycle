@@ -10,7 +10,7 @@ import Map from './map/map_container';
 
 const App = ({ children }) => (
   <div className='app'>
-    <h1>World Bikes</h1>
+    <h1>CycleList</h1>
     <Navigation />
     <main className='main'>
       { children }
