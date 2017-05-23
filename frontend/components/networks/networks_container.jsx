@@ -6,8 +6,6 @@ import { uniq } from 'lodash';
 
 import { networksByCity, networksByCountry } from '../../util/selectors';
 
-
-// !!! I WAN TO REFACTOR THIS TO PASS A UNIQ LIST OF NETWORK NAMES IN , NOT THE WHOLE NETWORK OBJECTS
 const mapStateToProps = (state, ownProps) => {
   const networks = (state.city === "" ?
                         (state.country === "" ? [] :
