@@ -8,7 +8,7 @@ class Networks extends React.Component {
   render() {
     return (
       <div className='networks'>
-        <h3>Nearby Bicycle Networks</h3>
+        <h3>Bicycle Networks{this.props.location ? ` in ${this.props.location}` : ''}</h3>
         <ul>
           {this.props.nearbyNetworks.map((nearNetwork) => (
             <li

@@ -20,6 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return ({
     nearbyNetworks: uniq(namesAndIds),
+    location: (state.city ? state.city : state.country),
   });
 }
 
