@@ -5,6 +5,12 @@ class Networks extends React.Component {
     super(props);
   }
 
+  componentWillReceiveProps(newProps) {
+    if(this.props.location !== newProps.location) {
+      this.props.setNearbyNetworks(newProps.networks);
+    }
+  }
+
   render() {
     return (
       <div className='networks'>

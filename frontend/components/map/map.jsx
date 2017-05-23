@@ -30,6 +30,8 @@ class Map extends React.Component {
       }
     })
 
+    this.geocoder = new google.maps.Geocoder();
+
     this.map = new google.maps.Map(this.mapNode, mapOptions)
 
     google.maps.event.addListener(this.map, 'idle', () => {
@@ -44,12 +46,25 @@ class Map extends React.Component {
       this.props.updateBounds(bounds);
     })
 
-
     const markers = {
       'pending': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%24|00FF00',
       'designated': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=J|FFFF00',
       'fulfilled': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=F|FF00FF',
       'unfulfilled': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=U|FF0000',
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (this.props !== newProps) {
+      const location = newProps.city || newProps.country;
+      console.log(location);
+
+      this.geocoder.geocode( {'address' : location}, (results, status) => {
+        if (status == google.maps.GeocoderStatus.OK) {
+              this.map.setCenter(results[0].geometry.location);
+              this.map.setZoom((newProps.city ? 12 : 5))
+          }
+      });
     }
   }
 

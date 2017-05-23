@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+
 import mapBoundsReducer from './map_bounds_reducer.js';
 import countryReducer from './country_reducer.js';
 import cityReducer from './city_reducer.js';

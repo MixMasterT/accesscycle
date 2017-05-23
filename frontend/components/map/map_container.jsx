@@ -6,7 +6,8 @@ import { getNetworks } from '../../actions/network_actions';
 import { updateBounds } from '../../actions/bounds_actions';
 
 const mapStateToProps = (state, ownProps) => ({
-  // your code here...
+  city: state.city,
+  country: state.country,
 });
 
 const mapDispatchToProps = dispatch => ({

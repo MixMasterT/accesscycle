@@ -4,6 +4,8 @@ import Networks from './networks.jsx';
 
 import { uniq } from 'lodash';
 
+import { setNearbyNetworks } from '../../actions/network_actions';
+
 import { networksByCity, networksByCountry } from '../../util/selectors';
 
 const mapStateToProps = (state, ownProps) => {
@@ -19,13 +21,14 @@ const mapStateToProps = (state, ownProps) => {
   }))
 
   return ({
+    networks,
     nearbyNetworks: uniq(namesAndIds),
     location: (state.city ? state.city : state.country),
   });
 }
 
 const mapDispatchToProps = dispatch => ({
-  // your code here...
+  setNearbyNetworks: (nearbyNetworks) => dispatch(setNearbyNetworks(nearbyNetworks)),
 });
 
 export default connect(
