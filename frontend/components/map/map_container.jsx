@@ -8,6 +8,7 @@ import { updateBounds } from '../../actions/bounds_actions';
 const mapStateToProps = (state, ownProps) => ({
   city: state.city,
   country: state.country,
+  nearbyNetworks: state.nearbyNetworks,
 });
 
 const mapDispatchToProps = dispatch => ({

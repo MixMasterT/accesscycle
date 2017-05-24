@@ -1,5 +1,7 @@
 import React from 'react';
 
+import markerModule from '../../util/marker_module';
+
 const getCoordsObj = latLng => ({
   lat: latLng.lat(),
   lng: latLng.lng()
@@ -9,10 +11,13 @@ class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      jobMarkers: []
+      locationNetworks: [],
+      currentNetwork: [],
     }
 
     this.addHomeMarker = this.addHomeMarker.bind(this);
+    this.updateLocationMarkers = this.updateLocationMarkers.bind(this);
+    this.setCurrentNetwork = this.setCurrentNetwork.bind(this);
 
   }
 
@@ -42,7 +47,6 @@ class Map extends React.Component {
         northEast: getCoordsObj(northEast),
         southWest: getCoordsObj(southWest)
       }
-      console.log(bounds);
       this.props.updateBounds(bounds);
     })
 
@@ -57,7 +61,6 @@ class Map extends React.Component {
   componentWillReceiveProps(newProps) {
     if (this.props !== newProps) {
       const location = newProps.city || newProps.country;
-      console.log(location);
 
       this.geocoder.geocode( {'address' : location}, (results, status) => {
         if (status == google.maps.GeocoderStatus.OK) {
@@ -65,7 +68,17 @@ class Map extends React.Component {
               this.map.setZoom((newProps.city ? 12 : 5))
           }
       });
+      this.updateLocationMarkers(newProps.nearbyNetworks);
+      this.setCurrentNetwork(newProps.networkDetail);
     }
+  }
+
+  updateLocationMarkers(networkArray) {
+    console.log("location networks are ", networkArray);
+  }
+
+  setCurrentNetwork(network) {
+    console.log("current network is ", network);
   }
 
 
