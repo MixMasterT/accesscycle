@@ -6,9 +6,7 @@
 @import './components/map.scss';
 @import './components/networks.scss';
 @import './components/main.scss';
+@import './components/top_bar.scss';
+@import './components/locations.scss';
 
 // shared styles
-.countries, .cities {
-  display: flex;
-  flex-direction: column;
-}
