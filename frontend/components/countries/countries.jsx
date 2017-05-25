@@ -24,7 +24,6 @@ class Countries extends React.Component {
             </li>)
           )}
         </ul>
-        <img src='https://upload.wikimedia.org/wikipedia/commons/9/9b/Upright_urban_bicyclist.svg' />
       </div>
     );
   }

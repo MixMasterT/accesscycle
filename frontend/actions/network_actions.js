@@ -19,14 +19,11 @@ export const setNearbyNetworks = nearbyNetworks => ({
   nearbyNetworks
 });
 
-export const getNetwork = (networkId) => dispatch => {
-  console.log("get Network fired");
-  return (
-    networkUtils.fetchNetwork(networkId).then((network) => dispatch(receiveNetwork(network)))
+export const getNetwork = (networkId) => dispatch => (
+  networkUtils.fetchNetwork(networkId).then((network) => dispatch(receiveNetwork(network)))
     .fail((err) => console.log(err))
-  )
+)
 
-}
 export const getNetworks = () => dispatch => (
   networkUtils.fetchNetworks().then((networks) => dispatch(receiveNetworks(networks)))
     .fail((err) => console.log(err))

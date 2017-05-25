@@ -23,12 +23,17 @@ class Main extends React.Component {
   render() {
     return (
       <main className='main'>
-        <Locations />
-        { this.state.mapShowing ? <Map /> : "" }
-        <Networks />
-        <button onClick={() => this.setState({ mapShowing: !this.state.mapShowing })}>
+        <button
+          className='show-map-btn'
+          onClick={() => this.setState({ mapShowing: !this.state.mapShowing })}
+        >
           { this.state.mapShowing ? "Hide " : "Show "}Map
         </button>
+        <div className='main-components'>          
+          <Locations />
+          { this.state.mapShowing ? <Map /> : "" }
+          <Networks />
+        </div>
       </main>
     );
   }

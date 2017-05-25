@@ -3,13 +3,12 @@
 @import './base.scss';
 
 @import './components/footer.scss';
-@import './components/navigation.scss';
 @import './components/map.scss';
 @import './components/networks.scss';
-@import './components/app.scss';
+@import './components/main.scss';
 
 // shared styles
-// .countries, .cities {
-//   float: left;
-//   margin-left: 1em;
-// }
+.countries, .cities {
+  display: flex;
+  flex-direction: column;
+}
