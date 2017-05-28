@@ -18,6 +18,7 @@ class Main extends React.Component {
       console.log("screen width is greater than 640 px!");
       this.setState({ mapShowing: true })
     }
+    this.props.getNetworks();
   }
 
   render() {
@@ -29,7 +30,7 @@ class Main extends React.Component {
         >
           { this.state.mapShowing ? "Hide " : "Show "}Map
         </button>
-        <div className='main-components'>          
+        <div className='main-components'>
           <Locations />
           { this.state.mapShowing ? <Map /> : "" }
           <Networks />

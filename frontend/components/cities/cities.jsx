@@ -7,10 +7,6 @@ class Cities extends React.Component {
     this.handleCityClick = this.handleCityClick.bind(this);
   }
 
-  componentDidMount() {
-    this.props.getNetworks();
-  }
-
   handleCityClick(city) {
     return e => this.props.setCity(city);
   }

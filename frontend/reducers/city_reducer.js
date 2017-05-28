@@ -15,7 +15,9 @@ const cityReducer = (state = _defaultState, action) => {
     case SET_COUNTRY:
       return "";
     case SET_CITY:
-      return action.city;
+    // city actually looks like: city, country so we need just city
+      const city = action.city.split(',')[0];
+      return city;
     default:
       return state;
   }
