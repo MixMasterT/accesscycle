@@ -15,7 +15,7 @@ const countryReducer = (state = _defaultState, action) => {
     case SET_CITY:
       return "";
     case SET_COUNTRY:
-      return action.country;
+      return (action.country === "Georgia" ? "Country Georgia" : action.country);
     default:
       return state;
   }
