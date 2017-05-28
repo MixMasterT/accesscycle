@@ -1,6 +1,8 @@
 import React from 'react';
 
-import markerModule from '../../util/marker_module';
+import MarkerManager from '../../util/marker_manager';
+
+import mapStyles from './map_styles.json';
 
 const getCoordsObj = latLng => ({
   lat: latLng.lat(),
@@ -24,7 +26,8 @@ class Map extends React.Component {
   componentDidMount() {
     let mapOptions = {
       center: { lat: 37.773972, lng: -122.431297 },
-      zoom: 12
+      zoom: 12,
+      styles: mapStyles,
     }
 
     navigator.geolocation.getCurrentPosition((loc) => {
