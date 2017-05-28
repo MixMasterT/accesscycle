@@ -18,7 +18,7 @@ class Cities extends React.Component {
   render() {
     return (
       <div className='cities'>
-        <h3>Cities with Bicycle Rental</h3>
+        <h3>Cities with Listed Bicycle Rental</h3>
         <ul>
           {this.props.citiesList.map((city) => (
             <li key={city} onClick={this.handleCityClick(city)}>

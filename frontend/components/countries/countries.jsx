@@ -17,6 +17,7 @@ class Countries extends React.Component {
   render() {
     return (
       <div className='countries'>
+        <h3>Countries with listed Bicycle Rental</h3>
         <ul>
           {this.props.countriesList.map((country, idx) => (
             <li key={idx} onClick={this.handleCountryClick(country)}>
