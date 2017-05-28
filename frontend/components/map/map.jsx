@@ -21,7 +21,7 @@ class Map extends React.Component {
     this.addHomeMarker = this.addHomeMarker.bind(this);
     this.updateLocationMarkers = this.updateLocationMarkers.bind(this);
     this.updateCurrentNetworkMarkers = this.updateCurrentNetworkMarkers.bind(this);
-
+    this.centerMapOnMarkers = this.centerMapOnMarkers.bind(this);
   }
 
   componentDidMount() {
@@ -85,19 +85,29 @@ class Map extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (this.props !== newProps) {
-      let location = newProps.city || newProps.country;
-      if (location === 'Georgia') {
-        location = 'Country Georgia';
+
+      if (this.props.city !== newProps.city || this.props.country !== newProps.country) {
+        let location = newProps.city || newProps.country;
+        if (location === 'Georgia') {
+          location = 'Country Georgia';
+        }
+
+        this.geocoder.geocode( {'address' : location}, (results, status) => {
+          if (status == google.maps.GeocoderStatus.OK) {
+            this.map.setCenter(results[0].geometry.location);
+            this.map.setZoom((newProps.city ? 12 : 5))
+          }
+        });
       }
 
-      this.geocoder.geocode( {'address' : location}, (results, status) => {
-        if (status == google.maps.GeocoderStatus.OK) {
-              this.map.setCenter(results[0].geometry.location);
-              this.map.setZoom((newProps.city ? 12 : 5))
-          }
-      });
-      this.updateLocationMarkers(newProps.nearbyNetworks);
-      this.updateCurrentNetworkMarkers(newProps.networkDetail);
+      if (this.props.nearbyNetworks !== newProps.nearbyNetworks) {
+        this.updateLocationMarkers(newProps.nearbyNetworks);
+      }
+
+      if (this.props.networkDetail !== newProps.networkDetail) {
+        this.updateCurrentNetworkMarkers(newProps.networkDetail);
+      }
+
     }
   }
 
@@ -120,6 +130,7 @@ class Map extends React.Component {
         id: network.id,
       })
     ))
+    this.centerMapOnMarkers(this.locationMarkerManager.markers);
   }
 
   updateCurrentNetworkMarkers(network) {
@@ -134,6 +145,7 @@ class Map extends React.Component {
         station,
       })
     ))
+    this.centerMapOnMarkers(this.stationMarkerManager.markers);
   }
 
 
@@ -148,6 +160,17 @@ class Map extends React.Component {
       icon: image
     })
     this.map.setZoom(13);
+  }
+
+  centerMapOnMarkers(markers) {
+    console.log('center map called', markers);
+    const bounds = new google.maps.LatLngBounds();
+    markers.forEach((marker) => {
+      const pos = marker.getPosition();
+      console.log(pos);
+      bounds.extend(marker.getPosition());
+    })
+    this.map.fitBounds(bounds);
   }
 
   render() {
