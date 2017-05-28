@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Map from './map.jsx';
 
 import { getNetworks, getNetwork } from '../../actions/network_actions';
+import { receiveStation, clearStation } from '../../actions/station_actions';
 import { updateBounds } from '../../actions/bounds_actions';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -16,6 +17,8 @@ const mapDispatchToProps = dispatch => ({
   getNetworks: () => dispatch(getNetworks()),
   getNetwork: (networkId) => dispatch(getNetwork(networkId)),
   updateBounds: bounds => dispatch(updateBounds(bounds)),
+  receiveStation: station => dispatch(receiveStation(station)),
+  clearStation: () => dispatch(clearStation()),
 });
 
 export default connect(

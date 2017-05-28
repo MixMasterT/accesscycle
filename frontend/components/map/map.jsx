@@ -68,8 +68,6 @@ class Map extends React.Component {
       'bicycle': bikeIcon,
       'network': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=N|ffff00',
       'station': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=J|FFFF00',
-      'fulfilled': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=F|FF00FF',
-      'unfulfilled': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=U|FF0000',
     }
 
     this.locationMarkerManager = new MarkerManager(
@@ -87,7 +85,10 @@ class Map extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (this.props !== newProps) {
-      const location = newProps.city || newProps.country;
+      let location = newProps.city || newProps.country;
+      if (location === 'Georgia') {
+        location = 'Country Georgia';
+      }
 
       this.geocoder.geocode( {'address' : location}, (results, status) => {
         if (status == google.maps.GeocoderStatus.OK) {
@@ -130,8 +131,7 @@ class Map extends React.Component {
         map: map,
         title: station.name,
         icon: mark,
-        id: station.id,
-        freeBikes: station.free_bikes,
+        station,
       })
     ))
   }

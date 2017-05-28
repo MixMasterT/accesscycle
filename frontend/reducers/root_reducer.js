@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import stationReducer from './station_reducer.js';
 
 import mapBoundsReducer from './map_bounds_reducer.js';
 import countryReducer from './country_reducer.js';
@@ -10,11 +11,12 @@ import networksReducer from './networks_reducer.js';
 
 const rootReducer = combineReducers({
   mapBounds: mapBoundsReducer,
+  networks: networksReducer,
   country: countryReducer,
   city: cityReducer,
   nearbyNetworks: nearbyNetworksReducer,
   networkDetail: networkDetailReducer,
-  networks: networksReducer,
+  station: stationReducer,
 
 });
 
