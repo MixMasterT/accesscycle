@@ -14,17 +14,25 @@ class MarkerManager {
   }
 
   addMarkerArray(objectsToMark, defineMarkerFunction) {
-    // define marker function must specify a position property as google
-    // map coords and take a second argument that is the map
-    objectsToMark.forEach(obj => _addMarker(defineMarkerFunction(obj, this.map)));
+    // first clear out old markers
+    this.clearMarkers();
+    // definemMarkerFunction must specify a position property as 'google
+    // map coords' and take a second argument that is the map
+    objectsToMark.forEach(obj => {
+      const marker = defineMarkerFunction(obj, this.map, this.markIcon);
+
+      this._addMarker(marker);
+    })
   }
 
   clearMarkers() {
     this.markers.forEach( marker => marker.setMap(null));
+    this.markers = [];
   }
 
   _addMarker(marker) {
-    marker.addListener('click', () => this.markerClickHandler());
+    // pass marker to clickHandler for processing
+    marker.addListener('click', () => this.markerClickHandler(marker));
     this.markers.push(marker);
   }
 }

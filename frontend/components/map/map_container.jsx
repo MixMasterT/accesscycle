@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => ({
   city: state.city,
   country: state.country,
   nearbyNetworks: state.nearbyNetworks,
-  networkDetail: state.networkDetail, 
+  networkDetail: state.networkDetail.network, 
 });
 
 const mapDispatchToProps = dispatch => ({
