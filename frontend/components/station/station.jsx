@@ -17,13 +17,15 @@ const Station = ({ station }) => {
             </tr>
 
             <tr>
-              <th>bikes available</th><th>free slots</th>
+              <th>bikes available</th><th>free slots</th><th>address</th>
             </tr>
           </thead>
 
           <tbody>
             <tr>
-              <td>{station.free_bikes}</td><td>{station.empty_slots}</td>
+              <td>{station.free_bikes}</td>
+              <td>{station.empty_slots}</td>
+              <td>{station.extra.address || 'address not provided'}</td>
             </tr>
           </tbody>
         </table>
