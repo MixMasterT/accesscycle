@@ -22,7 +22,7 @@ class MarkerManager {
       const marker = defineMarkerFunction(obj, this.map, this.markIcon);
 
       this._addMarker(marker);
-    })
+    });
   }
 
   clearMarkers() {

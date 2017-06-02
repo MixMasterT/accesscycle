@@ -59,7 +59,7 @@ class Map extends React.Component {
         path, // path in separate file
         fillColor: '#000000',
         fillOpacity: 1,
-        anchor: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(50,50),
         strokeWeight: 0,
         scale: 0.1
     }
@@ -78,7 +78,7 @@ class Map extends React.Component {
 
     this.stationMarkerManager = new MarkerManager(
       this.map,
-      (marker) => console.log('station marker clicked', marker),
+      (marker) => this.props.receiveStation(marker.station),
       markers['bicycle']
     )
   }
@@ -112,7 +112,6 @@ class Map extends React.Component {
   }
 
   updateLocationMarkers(networkArray) {
-    console.log("location networks are ", networkArray);
     // MarkerManager addMarkerArray requires two arguments, and array of ojbects
     // to be marked, and a function that defines the markers. The defineMarkerFunction
     // requires three arguments: 1 object to mark, 2 map, 3 mark. The MarkerManager
@@ -135,10 +134,9 @@ class Map extends React.Component {
 
   updateCurrentNetworkMarkers(network) {
     if (!network) { return; }
-    console.log("current network is ", network);
     this.stationMarkerManager.addMarkerArray(network.stations, (station, map, mark) => (
       new google.maps.Marker({
-        position: new google.maps.LatLng(station.latitude,station.longitude),
+        position: new google.maps.LatLng(station.latitude, station.longitude),
         map: map,
         title: station.name,
         icon: mark,
@@ -163,12 +161,13 @@ class Map extends React.Component {
   }
 
   centerMapOnMarkers(markers) {
+    // Strangely this function is working for stationMarkers but not for locationMarkers
     console.log('center map called', markers);
     const bounds = new google.maps.LatLngBounds();
     markers.forEach((marker) => {
-      const pos = marker.getPosition();
-      console.log(pos);
-      bounds.extend(marker.getPosition());
+      // const pos = getCoordsObj(marker.getPosition());
+      // console.log(pos);
+      bounds.extend(marker.position);
     })
     this.map.fitBounds(bounds);
   }

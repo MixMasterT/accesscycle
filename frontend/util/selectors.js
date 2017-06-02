@@ -13,10 +13,10 @@ export const citiesFromNetworks = (networksArr) => {
         }
       }
     }
-  })
+  });
   let orderedCities = [...cities].sort();
   return orderedCities;
-}
+};
 
 // gives array of country name strings
 export const countriesFromNetworks = (networksArr) => {
@@ -29,16 +29,16 @@ export const countriesFromNetworks = (networksArr) => {
         }
       }
     }
-  })
+  });
   const countriesArr = [...countries].map((country) => countryNameMap[country]);
   countriesArr.sort();
   return countriesArr;
-}
+};
 
 // gives array of network objects in the given city
 export const networksByCity = (city, networksArr) => {
   return networksArr.filter((network) => network.location.city === city);
-}
+};
 
 // gives array of network objects in the given country
 export const networksByCountry = (country, networksArr) => {
@@ -47,11 +47,11 @@ export const networksByCountry = (country, networksArr) => {
     if (countryNameMap[k] === country) {
       countryCode = k;
     }
-  })
+  });
   return networksArr.filter((network) => network.location.country === countryCode);
-}
+};
 
 // gives array of network objects in the rectangular latlng bounds
 export const networksInBounds = (bounds, networksArr) => {
 
-}
+};

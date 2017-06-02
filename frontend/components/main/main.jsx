@@ -3,6 +3,7 @@ import React from 'react';
 import Locations from '../locations/locations_container';
 import Map from '../map/map_container';
 import Networks from '../networks/networks_container';
+import Station from '../station/station_container';
 
 class Main extends React.Component {
   constructor(props) {
@@ -32,7 +33,10 @@ class Main extends React.Component {
         </button>
         <div className='main-components'>
           <Locations />
-          { this.state.mapShowing ? <Map /> : "" }
+          <div className='center'>
+            { this.state.mapShowing ? <Map /> : "" }
+            <Station />
+          </div>
           <Networks />
         </div>
       </main>
