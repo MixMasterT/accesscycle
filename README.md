@@ -32,8 +32,20 @@ advantage of Underscore.js Array function 'uniq' that filters out duplicates
 on the names list only. This required a slight refactoring of what I passed
 in to the networks React component.
 
-1. The most significant limitation was time. I was unable to make this into
-what I wanted it to be in a reasonable amount of time.
+1. While building the map component I chose to create a utility class called
+a markerManager. This helped make map markers easier to manage, but I ran into
+an interesting async issue when I reset the zoom level on the map to show
+cities vs. countries. Some large countries, such as Canada require a much
+lower zoom level, so I chose to use google.maps.fitBounds to make sure that
+all of the stations would be in view when a country was selected. Ultimately,
+I had to abandon doing any geocode check to center on the city or country,
+and instead rely entirely on fitBounds in order to avoid unpredictable outcomes
+resulting from async issues. I also added a check to zoom out if there is
+only one network in a countries list, because otherwise fitBounds will zoom in
+to 22, which is too much. This does cause a problem when there is a network
+with only one station. The current implementation will zoom out significantly
+in that case, requiring the user to manually zoom back in to view the location
+up close.
 
 ## How to Run
 In order to test this out, simply clone the repo, run 'yarn install' or

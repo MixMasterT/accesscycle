@@ -88,7 +88,7 @@ class Map extends React.Component {
 
       if (this.props.city !== newProps.city || this.props.country !== newProps.country) {
         let location = newProps.city || newProps.country;
-        if (location === 'Georgia') {  //Avoid moving the map to the State...
+        if (location === 'Georgia') {
           location = 'Country Georgia';
         }
       }
@@ -163,6 +163,10 @@ class Map extends React.Component {
       bounds.extend(marker.position);
     })
     this.map.fitBounds(bounds);
+
+    if (this.map.getZoom() > 20) {
+      this.map.setZoom(5);
+    }
   }
 
   render() {
