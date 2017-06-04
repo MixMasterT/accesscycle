@@ -88,16 +88,9 @@ class Map extends React.Component {
 
       if (this.props.city !== newProps.city || this.props.country !== newProps.country) {
         let location = newProps.city || newProps.country;
-        if (location === 'Georgia') {
+        if (location === 'Georgia') {  //Avoid moving the map to the State...
           location = 'Country Georgia';
         }
-
-        this.geocoder.geocode( {'address' : location}, (results, status) => {
-          if (status == google.maps.GeocoderStatus.OK) {
-            this.map.setCenter(results[0].geometry.location);
-            this.map.setZoom((newProps.city ? 12 : 5))
-          }
-        });
       }
 
       if (this.props.nearbyNetworks !== newProps.nearbyNetworks) {
