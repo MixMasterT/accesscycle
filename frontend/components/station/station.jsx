@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Station = ({ station }) => {
-  console.log(station);
   if (Object.keys(station).length === 0) {
     return (
       <h2>No Station Selected</h2>
@@ -32,10 +31,7 @@ const Station = ({ station }) => {
 
       </div>
     );
-
   }
-
 }
-
 
 export default Station;

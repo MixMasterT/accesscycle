@@ -1,6 +1,11 @@
 .countries, .cities {
   display: flex;
   flex-direction: column;
+
+  li:hover {
+    background-color: #AAA;
+    cursor: pointer;
+  }
 }
 
 .locations-selector {

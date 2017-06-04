@@ -16,7 +16,6 @@ class Main extends React.Component {
 
   componentDidMount() {
     if (window.matchMedia("(min-width: 640px)").matches) {
-      console.log("screen width is greater than 640 px!");
       this.setState({ mapShowing: true })
     }
     this.props.getNetworks();
