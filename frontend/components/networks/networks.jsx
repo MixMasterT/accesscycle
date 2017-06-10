@@ -6,9 +6,20 @@ class Networks extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if(this.props.location !== newProps.location) {
-      this.props.setNearbyNetworks(newProps.networks);
+    if (this.props.location !== newProps.location) {
+      if (!!newProps.networks.length) {
+        this.props.setNearbyNetworks(newProps.networks);
+      } else {
+        alert(`No bicycle networks found in ${newProps.location}`);
+      }
+      console.log(!!newProps.networks.length);
     }
+      // if (newProps.networks === []) {
+      //   console.log('null network detected');
+      // } else {
+      //   this.props.setNearbyNetworks(newProps.networks);
+      // }
+    //}
   }
 
   render() {
@@ -19,8 +30,8 @@ class Networks extends React.Component {
           {this.props.nearbyNetworks.map((nearNetwork) => (
             <li
               key={nearNetwork.id}
-              onClick={() => this.props.getNetwork(nearNetwork.id)}
-              >
+              onClick={() => this.props.getNetwork(nearNetwork.id) }
+            >
               {nearNetwork.name}
             </li>)
           )}
