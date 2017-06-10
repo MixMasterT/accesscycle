@@ -6,7 +6,9 @@ export const citiesFromNetworks = (networksArr) => {
   networksArr.forEach((network) => {
     if (network.location) {
       if (network.location.city) {
-        if (!cities.has(network.location.city)) {
+        if (!cities.has(`${network.location.city}, ${
+            countryNameMap[network.location.country]
+          }`)) {
           cities.add(`${network.location.city}, ${
             countryNameMap[network.location.country]
           }`);
@@ -30,6 +32,7 @@ export const countriesFromNetworks = (networksArr) => {
       }
     }
   });
+
   const countriesArr = [...countries].map((country) => countryNameMap[country]);
   countriesArr.sort();
   return countriesArr;
