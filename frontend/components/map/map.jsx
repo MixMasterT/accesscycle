@@ -59,7 +59,7 @@ class Map extends React.Component {
         path, // path in separate file
         fillColor: '#000000',
         fillOpacity: 1,
-        anchor: new google.maps.Point(50,50),
+        anchor: new google.maps.Point(200,300),
         strokeWeight: 0,
         scale: 0.1
     }
