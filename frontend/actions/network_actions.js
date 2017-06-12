@@ -1,5 +1,4 @@
 export const RECEIVE_NETWORK = 'RECEIVE_NETWORK';
-// export const CLEAR_NETWORK = 'CLEAR_NETWORK';
 export const RECEIVE_NETWORKS = 'RECEIVE_NETWORKS';
 export const SET_NEARBY_NETWORKS = 'SET_NEARBY_NETWORKS';
 
@@ -9,10 +8,6 @@ const receiveNetwork = network => ({
   type: RECEIVE_NETWORK,
   network,
 });
-
-// export const clearNetwork = () => ({
-//   type: CLEAR_NETWORK,
-// });
 
 const receiveNetworks = networks => ({
   type: RECEIVE_NETWORKS,
