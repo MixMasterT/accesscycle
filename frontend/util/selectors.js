@@ -6,13 +6,10 @@ export const citiesFromNetworks = (networksArr) => {
   networksArr.forEach((network) => {
     if (network.location) {
       if (network.location.city) {
-        if (!cities.has(`${network.location.city}, ${
-            countryNameMap[network.location.country]
-          }`)) {
-          cities.add(`${network.location.city}, ${
-            countryNameMap[network.location.country]
-          }`);
-        }
+        // if (!cities.has(`${network.location.city}, ${
+        //     countryNameMap[network.location.country]
+        //   }`)) {
+          cities.add(`${network.location.city},${countryNameMap[network.location.country]}`);
       }
     }
   });
@@ -40,7 +37,17 @@ export const countriesFromNetworks = (networksArr) => {
 
 // gives array of network objects in the given city
 export const networksByCity = (city, networksArr) => {
-  return networksArr.filter((network) => network.location.city === city);
+
+  return networksArr.filter((network) => {
+    if(network.location.country === 'US') {
+      console.log(city);
+      console.log(network.location.city);
+      console.log(city == network.location.city);
+    }
+    // I DON"T KNOW WHY, THIS DOENS"T WORK FOR US CITIES...
+
+    return network.location.city == city;
+  });
 };
 
 // gives array of network objects in the given country

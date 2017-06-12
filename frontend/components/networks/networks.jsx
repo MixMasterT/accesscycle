@@ -12,7 +12,6 @@ class Networks extends React.Component {
       } else {
         alert(`No bicycle networks found in ${newProps.location}`);
       }
-      console.log(!!newProps.networks.length);
     }
       // if (newProps.networks === []) {
       //   console.log('null network detected');

@@ -18,7 +18,7 @@ class Cities extends React.Component {
         <ul>
           {this.props.citiesList.map((city) => (
             <li key={city} onClick={this.handleCityClick(city)}>
-              {city}
+              {city.replace(",", ", ")}
             </li>)
           )}
         </ul>
