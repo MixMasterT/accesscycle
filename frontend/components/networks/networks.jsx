@@ -13,12 +13,6 @@ class Networks extends React.Component {
         alert(`No bicycle networks found in ${newProps.location}`);
       }
     }
-      // if (newProps.networks === []) {
-      //   console.log('null network detected');
-      // } else {
-      //   this.props.setNearbyNetworks(newProps.networks);
-      // }
-    //}
   }
 
   render() {

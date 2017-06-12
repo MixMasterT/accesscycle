@@ -94,6 +94,7 @@ class Map extends React.Component {
       }
 
       if (this.props.nearbyNetworks !== newProps.nearbyNetworks) {
+        this.stationMarkerManager.clearMarkers();
         this.updateLocationMarkers(newProps.nearbyNetworks);
       }
 
