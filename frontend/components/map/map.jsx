@@ -59,7 +59,7 @@ class Map extends React.Component {
         path, // path in separate file
         fillColor: '#000000',
         fillOpacity: 1,
-        anchor: new google.maps.Point(200,300),
+        anchor: new google.maps.Point(100, 150),
         strokeWeight: 0,
         scale: 0.1
     }
@@ -154,8 +154,6 @@ class Map extends React.Component {
   }
 
   centerMapOnMarkers(markers) {
-    // Strangely this function is working for stationMarkers but not for locationMarkers
-    console.log('center map called', markers);
     const bounds = new google.maps.LatLngBounds();
     markers.forEach((marker) => {
       // const pos = getCoordsObj(marker.getPosition());
