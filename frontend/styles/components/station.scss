@@ -1,0 +1,22 @@
+.station {
+  h2 {
+    margin-top: 1em;
+    font-size: 1.4em;
+  }
+  table {
+    width: 100%;
+    padding: 0.8em;
+    text-align: center;
+    border: 1px solid grey;
+    th {
+      padding: 0.8em;
+    }
+    td {
+      padding: 0.6em;
+    }
+
+    tr:nth-child(even) {
+      background-color: #F2F2F2;
+    }
+  }
+}
