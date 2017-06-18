@@ -7,3 +7,22 @@
   align-items: stretch;
   justify-content: space-around;
 }
+
+.main-narrow {
+
+
+  .components {
+    display: flex;
+    flex-direction: column;
+
+    .top {
+
+    }
+
+    .second {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+  }
+}

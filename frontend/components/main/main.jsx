@@ -10,36 +10,48 @@ class Main extends React.Component {
     super(props);
 
     this.state = {
-      mapShowing: false,
+      oneRow: false,
     }
   }
 
   componentDidMount() {
     if (window.matchMedia("(min-width: 640px)").matches) {
-      this.setState({ mapShowing: true })
+      this.setState({ oneRow: true })
     }
     this.props.getNetworks();
   }
 
   render() {
-    return (
-      <main className='main'>
-        <button
-          className='show-map-btn'
-          onClick={() => this.setState({ mapShowing: !this.state.mapShowing })}
-        >
-          { this.state.mapShowing ? "Hide " : "Show "}Map
-        </button>
-        <div className='main-components'>
-          <Locations />
-          <div className='center'>
-            { this.state.mapShowing ? <Map /> : "" }
-            <Station />
+    if (this.state.oneRow) {
+      return (
+        <main className='main'>
+          <div className='main-components'>
+            <Locations />
+            <div className='center'>
+              <Map />
+              <Station />
+            </div>
+            <Networks />
           </div>
-          <Networks />
-        </div>
-      </main>
-    );
+        </main>
+      );
+    } else {
+      return (
+        <main className='main-narrow'>
+          <div className='components'>
+            <div className='top'>
+              <Map />
+            </div>
+
+            <div className='second'>
+              <Networks />
+              <Station />
+              <Locations />
+            </div>
+          </div>
+        </main>
+      );
+    }
   }
 }
 
