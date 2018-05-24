@@ -11,18 +11,18 @@ class Locations extends React.Component {
       countries: true,
     }
   }
-  
+
   render() {
     return (
       <div className='locations'>
         <div className='locations-selector'>
           <div
             onClick={ () => this.setState({ countries: true }) }
-            className='select-countries'
+            className={`select-countries${this.state.countries ? ' active' : ''}`}
           >Countries</div>
           <div
             onClick={ () => this.setState({ countries: false }) }
-            className='select-cities'
+            className={`select-cities${this.state.countries ? '' : ' active'}`}
           >Cities</div>
         </div>
         { this.state.countries ? <Countries /> : <Cities />}
