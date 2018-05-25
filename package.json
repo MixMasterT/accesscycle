@@ -25,12 +25,14 @@
     "sass-loader": "^6.0.5",
     "style-loader": "^0.17.0",
     "url-loader": "^0.5.8",
-    "webpack": "^2.5.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack": "^2.5.1"
   },
   "scripts": {
     "start": "webpack-dev-server --env development --hot  --inline --history-api-fallback",
     "build": "webpack --env production",
     "lint:js": "eslint app/ webpack.*.js --cache"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.4.5"
   }
 }

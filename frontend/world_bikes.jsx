@@ -7,7 +7,7 @@ import styles from './styles/main.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('react-root');
-  const store = configureStore();
+  const store = configureStore(); // add preloaded state as arg if needed
 
   ReactDOM.render(<Root store={ store } />, root);
 });
