@@ -19,9 +19,6 @@ const countryReducer = (state = _defaultState, action) => {
     case SET_CITY:
       return merge({}, state, {city: ""});
     case SET_COUNTRY:
-      console.log('country state', state);
-      console.log('action.country', action.country);
-      console.log('returned state', merge({}, state, {country: action.country}));
       return merge({}, state, {country: action.country});
     case UPDATE_CURRENT_COUNTRIES:
       return merge({}, state, {currentCountries: actions.countries})

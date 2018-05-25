@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import Networks from './networks.jsx';
-
 import { uniq } from 'lodash';
-
 import { setNearbyNetworks, getNetwork } from '../../actions/network_actions';
-
 import { networksByCity, networksByCountry } from '../../util/selectors';
 
 const mapStateToProps = (state, ownProps) => {
