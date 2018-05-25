@@ -1,21 +1,30 @@
 import { merge } from 'lodash';
 import {
           CLEAR_COUNTRY,
+          UPDATE_CURRENT_COUNTRIES,
           SET_COUNTRY     } from "../actions/country_actions.js";
 import {
           CLEAR_CITY,
           SET_CITY        } from "../actions/city_actions.js";
 
-let _defaultState = "";
+let _defaultState = {
+  country: "",
+  currentCountries: [],
+};
 
 const countryReducer = (state = _defaultState, action) => {
   Object.freeze(state);
   switch(action.type) {
     case CLEAR_COUNTRY:
     case SET_CITY:
-      return "";
+      return merge({}, state, {city: ""});
     case SET_COUNTRY:
-      return action.country;
+      console.log('country state', state);
+      console.log('action.country', action.country);
+      console.log('returned state', merge({}, state, {country: action.country}));
+      return merge({}, state, {country: action.country});
+    case UPDATE_CURRENT_COUNTRIES:
+      return merge({}, state, {currentCountries: actions.countries})
     default:
       return state;
   }

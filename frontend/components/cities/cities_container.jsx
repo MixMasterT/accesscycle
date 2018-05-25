@@ -11,7 +11,6 @@ const mapStateToProps = (state, ownProps) => ({
   networks: state.networks,
 });
 
-
 const mapDispatchToProps = dispatch => ({
   getNetworks: () => dispatch(getNetworks()),
   setCity: (city) => dispatch(setCity(city)),

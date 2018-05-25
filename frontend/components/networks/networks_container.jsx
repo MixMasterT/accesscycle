@@ -9,21 +9,20 @@ import { setNearbyNetworks, getNetwork } from '../../actions/network_actions';
 import { networksByCity, networksByCountry } from '../../util/selectors';
 
 const mapStateToProps = (state, ownProps) => {
-  const networks = (state.city === "" ?
-                        (state.country === "" ? [] :
-                        networksByCountry(state.country, state.networks)
-                    ): networksByCity(state.city, state.networks)
-                  );
-
+  let city = state.city.city;
+  let country = state.country.country;
+  let networks = networksByCountry(country, state.networks);
+  if(city !== undefined && city !== "") {
+    networks = networksByCity(city, state.networks)
+  }
   const namesAndIds = networks.map((network) => ({
     name: network.name,
     id: network.id,
   }))
-
   return ({
     networks,
     nearbyNetworks: uniq(namesAndIds),
-    location: (state.city ? state.city : state.country),
+    location: (city ? city : country),
   });
 }
 

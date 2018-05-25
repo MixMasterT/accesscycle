@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
   nearbyNetworks: nearbyNetworksReducer,
   networkDetail: networkDetailReducer,
   station: stationReducer,
-
+  dog: 'MONKEY',
 });
 
 export default rootReducer;

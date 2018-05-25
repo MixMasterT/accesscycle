@@ -17,13 +17,13 @@ const paginationReducer = (state = _defaultState, action) => {
   Object.freeze(state);
   let newState;
   switch(action.type) {
-    case: UPDATE_COUNTRY_PAGE
+    case UPDATE_COUNTRY_PAGE:
       newState = merge(state, {currentCountryPage: action.page});
-    case: UPDATE_CITY_PAGE
+    case UPDATE_CITY_PAGE:
       newState = merge(state, {currentCityPage: action.page});
-    case: SET_TOTAL_COUNTRY_PAGES
+    case SET_TOTAL_COUNTRY_PAGES:
       newState = merge(state, {totalCountryPages: action.totalPages});
-    case: SET_TOTAL_CITY_PAGES
+    case SET_TOTAL_CITY_PAGES:
       newState = merge(state, {totalCityPages: action.totalPages});
     default:
       return state;

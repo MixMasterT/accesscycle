@@ -28,7 +28,7 @@
     "webpack": "^2.5.1"
   },
   "scripts": {
-    "start": "webpack-dev-server --env development --hot  --inline --history-api-fallback",
+    "start": "webpack-dev-server --env development --hot --inline --history-api-fallback",
     "build": "webpack --env production",
     "lint:js": "eslint app/ webpack.*.js --cache"
   },

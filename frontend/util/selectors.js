@@ -29,7 +29,6 @@ export const countriesFromNetworks = (networksArr) => {
       }
     }
   });
-
   const countriesArr = [...countries].map((country) => countryNameMap[country]);
   countriesArr.sort();
   return countriesArr;
@@ -37,7 +36,6 @@ export const countriesFromNetworks = (networksArr) => {
 
 // gives array of network objects in the given city
 export const networksByCity = (city, networksArr) => {
-
   return networksArr.filter((network) => network.location.city == city );
 };
 
