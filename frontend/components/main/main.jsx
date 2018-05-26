@@ -31,7 +31,6 @@ class Main extends React.Component {
   }
 
   render() {
-    console.log('window.width', window.innerWidth);
     if (this.state.width > 700) {
       return (
         <main className='main'>

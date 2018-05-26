@@ -1,5 +1,4 @@
 export const fetchNetworks = () => {
-  console.log('fetchNetworks called...');
   return (
     $.ajax({
       method: 'GET',

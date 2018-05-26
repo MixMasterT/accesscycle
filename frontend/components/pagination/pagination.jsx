@@ -60,7 +60,6 @@ class Pagination extends React.Component {
       page = props.countryPage;
       pageLimit = props.totalCountryPages;
     }
-    console.log('page', page);
     return (
       <div className="pagination">
         <div className="buttons">

@@ -23,7 +23,6 @@ class Networks extends React.Component {
                </div>
     if (nearbyNetworks.length > 0) {
       list = nearbyNetworks.map((network, idx) => {
-        console.log('network', idx, network);
         return (
           <li
             className="network-name"
