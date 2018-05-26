@@ -1,8 +1,17 @@
 .networks {
   background: #AAA;
 
-  li:hover {
-    background-color: #DDD;
-    cursor: pointer;
+  .heading {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+  }
+
+  .network-names {
+
+    .network-name:hover {
+      background-color: #DDD;
+      cursor: pointer;
+    }
   }
 }

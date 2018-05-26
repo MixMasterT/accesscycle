@@ -6,6 +6,9 @@
   display: flex;
   align-items: stretch;
   justify-content: space-between;
+  .locations, .networks {
+    width: 30%;
+  }
 }
 
 .main-narrow {
@@ -19,7 +22,4 @@
       justify-content: space-around;
     }
   }
-}
-.center {
-  margin: auto;
 }

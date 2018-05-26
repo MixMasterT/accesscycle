@@ -16,6 +16,7 @@ const mapStateToProps = (state, ownProps) => {
   const namesAndIds = networks.map((network) => ({
     name: network.name,
     id: network.id,
+    location: network.location,
   }))
   return ({
     networks,

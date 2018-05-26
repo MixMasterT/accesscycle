@@ -16,19 +16,34 @@ class Networks extends React.Component {
   }
 
   render() {
+    const nearbyNetworks = this.props.nearbyNetworks;
+    let list = <div className="disclaimer">
+                 <li>No networks found</li>
+                 <li>Click on a location!</li>
+               </div>
+    if (nearbyNetworks.length > 0) {
+      list = nearbyNetworks.map((network, idx) => {
+        console.log('network', idx, network);
+        return (
+          <li
+            className="network-name"
+            key={network.id}
+            onClick={() => this.props.getNetwork(network.id) }
+            >
+            {network.name}{network.location.city ?
+              ` (${network.location.city})` :
+              ''
+            }
+          </li>
+        )}
+      )
+    }
     return (
       <div className='networks'>
-        <h3>Bicycle Networks{this.props.location ? ` in ${this.props.location}` : ''}</h3>
-        <ul>
-          {this.props.nearbyNetworks.map((nearNetwork) => (
-            <li
-              key={nearNetwork.id}
-              onClick={() => this.props.getNetwork(nearNetwork.id) }
-            >
-              {nearNetwork.name}
-            </li>)
-          )}
-        </ul>
+        <h3 className="heading">
+          Bicycle Networks{this.props.location ? ` in ${this.props.location}` : ''}
+        </h3>
+        <ul className="network-names">{list}</ul>
       </div>
     );
   }
