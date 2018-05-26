@@ -8,10 +8,6 @@ import Station from '../station/station_container';
 class Main extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      oneRow: false,
-    }
   }
 
   componentDidMount() {
@@ -22,7 +18,8 @@ class Main extends React.Component {
   }
 
   render() {
-    if (this.state.oneRow) {
+    console.log('window.width', window.innerWidth);
+    if (window.innerWidth > 700) {
       return (
         <main className='main'>
           <div className='main-components'>
@@ -44,9 +41,9 @@ class Main extends React.Component {
             </div>
 
             <div className='second'>
-              <Networks />
-              <Station />
               <Locations />
+              <Station />
+              <Networks />
             </div>
           </div>
         </main>

@@ -26,8 +26,8 @@ class Locations extends React.Component {
             className={`select-cities${this.state.countries ? '' : ' active'}`}
           >Cities</div>
         </div>
-        <Pagination isCountries={this.state.countries} />
         { this.state.countries ? <Countries /> : <Cities />}
+        <Pagination isCountries={this.state.countries} />
       </div>
     );
   }

@@ -5,12 +5,10 @@
 .main-components {
   display: flex;
   align-items: stretch;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .main-narrow {
-
-
   .components {
     display: flex;
     flex-direction: column;
@@ -21,4 +19,7 @@
       justify-content: space-around;
     }
   }
+}
+.center {
+  margin: auto;
 }

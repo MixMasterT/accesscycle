@@ -4,36 +4,42 @@ class Pagination extends React.Component {
   constructor(props) {
     super(props);
 
-    this.setPageToZero = this.setPageToZero.bind(this);
+    this.goToFirstPage = this.goToFirstPage.bind(this);
     this.plusPage = this.plusPage.bind(this);
     this.minusPage = this.minusPage.bind(this);
     this.goToLastPage = this.goToLastPage.bind(this);
   }
 
-  setPageToZero() {
+  goToFirstPage() {
     const props = this.props
-    props.isCity ? props.updateCityPage(0) :  props.updateCountryPage(0);
+    props.isCountries ? props.updateCountryPage(0) : props.updateCityPage(0);
   }
 
   plusPage() {
     const props = this.props
-    let page = props.page;
-    if(page < props.totalPages) {
+    let page = props.cityPage;
+    let pageLimit = props.totalCityPages;
+    if(props.isCountries) {
+      page = props.countryPage;
+      pageLimit = props.totalCountryPages;
+    }
+    if(page < pageLimit) {
       page++;
     }
     props.isCountries ?
-    props.updateCountryPage(page) :
+      props.updateCountryPage(page) :
       props.updateCityPage(page)
   }
 
   minusPage() {
     const props = this.props
-    let page = props.page;
+    let page = props.cityPage;
+    if(props.isCountries) {
+      page = props.countryPage;
+    }
     if(page > 0) {
       page--;
     }
-    console.log('minusPage called');
-    console.log('props.isCountries', props.isCountries);
     props.isCountries ?
     props.updateCountryPage(page) :
       props.updateCityPage(page)
@@ -42,17 +48,30 @@ class Pagination extends React.Component {
   goToLastPage() {
     const props = this.props;
     props.isCountries ?
-    props.updateCountryPage(props.totalPages) :
-      props.updateCityPage(props.totalPages)
+      props.updateCountryPage(props.totalCountryPages) :
+      props.updateCityPage(props.totalCityPages)
   }
 
   render() {
+    const props = this.props;
+    let page = props.cityPage;
+    let pageLimit = props.totalCityPages;
+    if(props.isCountries) {
+      page = props.countryPage;
+      pageLimit = props.totalCountryPages;
+    }
+    console.log('page', page);
     return (
       <div className="pagination">
-        <div onClick={this.setPageToZero}>◀◀</div>
-        <div onClick={this.minusPage}>◀</div>
-        <div onClick={this.plusPage}>▶</div>
-        <div onClick={this.goToLastPage}>▶▶</div>
+        <div className="buttons">
+          <div onClick={this.goToFirstPage}>◀◀</div>
+          <div onClick={this.minusPage}>◀</div>
+          <div onClick={this.plusPage}>▶</div>
+          <div onClick={this.goToLastPage}>▶▶</div>
+        </div>
+        <div className="indicator">
+          p.{page} of {pageLimit}
+        </div>
       </div>
     );
   }

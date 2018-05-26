@@ -6,19 +6,12 @@ import { updateCityPage,
          updateCountryPage } from '../../actions/pagination_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  const city = state.city.city;
-  let pages = state.pagination.totalCountryPages;
-  let page = state.pagination.currentCountryPage;
-  let isCity = false;
-  console.log('city', city, 'in mapStateToProps');
-  if(city !== undefined && city !== "") {
-    pages = state.pagination.totalCityPages;
-    page = state.pagination.currentCityPage;
-  }
+  const pagination = state.pagination;
   return ({
-    page,
-    isCity,
-    totalPages: pages,
+    countryPage: pagination.currentCountryPage,
+    cityPage: pagination.currentCityPage,
+    totalCountryPages: pagination.totalCountryPages,
+    totalCityPages: pagination.totalCityPages,
   });
 }
 
