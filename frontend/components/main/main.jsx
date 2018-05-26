@@ -8,18 +8,31 @@ import Station from '../station/station_container';
 class Main extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      width: window.innerWidth
+    }
+    this.getWidth = this.getWidth.bind(this);
   }
 
   componentDidMount() {
-    if (window.matchMedia("(min-width: 640px)").matches) {
-      this.setState({ oneRow: true })
-    }
     this.props.getNetworks();
+    window.addEventListener('resize', this.getWidth);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.getWidth);
+  }
+
+  getWidth() {
+    this.setState({
+      width: window.innerWidth
+    })
   }
 
   render() {
     console.log('window.width', window.innerWidth);
-    if (window.innerWidth > 700) {
+    if (this.state.width > 700) {
       return (
         <main className='main'>
           <div className='main-components'>
