@@ -2,6 +2,7 @@ import React from 'react';
 
 import Cities from '../cities/cities_container';
 import Countries from '../countries/countries_container';
+import Pagination from '../pagination/pagination_container';
 
 class Locations extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class Locations extends React.Component {
             className={`select-cities${this.state.countries ? '' : ' active'}`}
           >Cities</div>
         </div>
+        <Pagination isCountries={this.state.countries} />
         { this.state.countries ? <Countries /> : <Cities />}
       </div>
     );
