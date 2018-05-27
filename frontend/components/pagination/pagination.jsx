@@ -69,7 +69,7 @@ class Pagination extends React.Component {
           <div onClick={this.goToLastPage}>▶▶</div>
         </div>
         <div className="indicator">
-          p.{page} of {pageLimit}
+          p.{page + 1} of {pageLimit + 1}
         </div>
       </div>
     );
