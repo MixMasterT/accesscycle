@@ -7,9 +7,8 @@
     margin-bottom: 0.5em;
   }
 
-  .network-names {
-
-    .network-name:hover {
+  .network-names, .network-names-container {
+    .network-name:hover, .network-name:hover {
       background-color: #DDD;
       cursor: pointer;
     }
