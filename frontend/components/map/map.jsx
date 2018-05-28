@@ -106,7 +106,8 @@ class Map extends React.Component {
   }
 
   updateLocationMarkers(networkArray) {
-    // MarkerManager addMarkerArray requires two arguments, and array of ojbects
+    console.log('updateLocationMarkers called');
+    // MarkerManager.addMarkerArray requires two arguments, an array of ojbects
     // to be marked, and a function that defines the markers. The defineMarkerFunction
     // requires three arguments: 1 object to mark, 2 map, 3 mark. The MarkerManager
     // instance will hold these second two arguments, but they must be handled
@@ -127,6 +128,7 @@ class Map extends React.Component {
   }
 
   updateCurrentNetworkMarkers(network) {
+    console.log('update current network markers called');
     if (!network) { return; }
     this.stationMarkerManager.addMarkerArray(network.stations, (station, map, mark) => (
       new google.maps.Marker({
@@ -139,7 +141,6 @@ class Map extends React.Component {
     ))
     this.centerMapOnMarkers(this.stationMarkerManager.markers);
   }
-
 
   addHomeMarker(lat, lng) {
     if (this.state.homeMarker) { this.state.homeMarker.setMap(null); }
@@ -155,6 +156,7 @@ class Map extends React.Component {
   }
 
   centerMapOnMarkers(markers) {
+    console.log('maps -- centerMapOnMarkers called');
     const bounds = new google.maps.LatLngBounds();
     markers.forEach((marker) => {
       // const pos = getCoordsObj(marker.getPosition());

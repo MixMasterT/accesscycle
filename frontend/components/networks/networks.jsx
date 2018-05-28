@@ -12,6 +12,16 @@ class Networks extends React.Component {
     }
   }
 
+  componentWillReceiveProps(newProps) {
+    if (this.props.location !== newProps.location) {
+      if (!!newProps.networks.length) {
+        this.props.setNearbyNetworks(newProps.networks);
+      } else {
+        console.warn(`No bicycle networks found in ${newProps.location}`);
+      }
+    }
+  }
+
   render() {
     const props = this.props;
     const nearbyNetworks = this.props.nearbyNetworks;
