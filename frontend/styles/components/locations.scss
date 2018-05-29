@@ -1,37 +1,39 @@
-.countries, .cities {
-  display: flex;
-  flex-direction: column;
+.floating-content {
+  .countries, .cities {
+    display: flex;
+    flex-direction: column;
 
-  li:hover {
-    background-color: #AAA;
-    cursor: pointer;
-  }
-}
-
-.active {
-  background-color: #DDD;
-}
-
-.locations-selector {
-  margin-top: 1em;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-
-  .select-countries, .select-cities {
-    border: 1px solid black;
-    width: 101%;
-    padding: 0.3em;
+    li:hover {
+      background-color: #AAA;
+      cursor: pointer;
+    }
   }
 
-  .select-countries:hover, .select-cities:hover {
-    cursor: pointer;
-    background-color: #888;
-    color: #FFF;
+  .active {
+    background-color: #DDD;
   }
 
-  div:first-child {
-    border-right: none;
+  .locations-selector {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    .select-countries, .select-cities {
+      border: 1px solid black;
+      width: 101%;
+      padding: 0.3em;
+    }
+
+    .select-countries:hover, .select-cities:hover {
+      cursor: pointer;
+      background-color: #888;
+      color: #FFF;
+    }
+
+    div:first-child {
+      border-right: none;
+    }
   }
 }

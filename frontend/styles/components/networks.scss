@@ -1,16 +1,18 @@
-.networks {
-  background: #AAA;
+.floating-content {
+    .networks {
+    background: #AAA;
 
-  .heading {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 0.5em;
-  }
+    .heading {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 0.5em;
+    }
 
-  .network-names, .network-names-container {
-    .network-name:hover, .network-name:hover {
-      background-color: #DDD;
-      cursor: pointer;
+    .network-names, .network-names-container {
+      .network-name:hover, .network-name:hover {
+        background-color: #DDD;
+        cursor: pointer;
+      }
     }
   }
 }

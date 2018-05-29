@@ -1,0 +1,18 @@
+.floating-dropdown {
+  z-index: 5;
+  position: fixed;
+}
+
+.floating-dropdown.Locations {
+  left: 5%;
+}
+
+.floating-dropdown.Networks {
+  right: 5%;
+}
+
+.floating-dropdown.closed {
+  .hidden {
+    display: none;
+  }
+}

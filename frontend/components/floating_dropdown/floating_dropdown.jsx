@@ -11,7 +11,7 @@ class FloatingDropdown extends React.Component {
   render() {
     if (this.state.isOpen) {
       return (
-        <div className="floating-dropdown">
+        <div className={`floating-dropdown ${this.props.title}`}>
           <span
             className='close-dropdown-ex'
             onClick={() => this.setState({ isOpen: false })}>&times;
@@ -24,10 +24,13 @@ class FloatingDropdown extends React.Component {
     } else {
       return (
         <div
-          className="floating-dropdown closed"
+          className={`floating-dropdown ${this.props.title} closed`}
           onClick={() => this.setState({ isOpen: true} )}
         >
           {this.props.title}
+          <div className="hidden">
+            {this.props.children}
+          </div>
         </div>
       )
     }
