@@ -4,6 +4,7 @@ import Locations from '../locations/locations_container';
 import Map from '../map/map_container';
 import Networks from '../networks/networks_container';
 import Station from '../station/station_container';
+import FloatingDropdown from '../floating_dropdown/floating_dropdown';
 
 class Main extends React.Component {
   constructor(props) {
@@ -35,12 +36,16 @@ class Main extends React.Component {
       return (
         <main className='main'>
           <div className='main-components'>
-            <Locations />
+            <FloatingDropdown title="Locations">
+              <Locations />
+            </FloatingDropdown>
             <div className='center'>
               <Map />
               <Station />
             </div>
-            <Networks />
+            <FloatingDropdown title="Networks">
+              <Networks />
+            </FloatingDropdown>
           </div>
         </main>
       );
