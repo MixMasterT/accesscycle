@@ -18,7 +18,10 @@ class Station extends React.Component {
       if (!address || address === '') {
         address = station.extra ? station.extra.address : null;
       }
-      if (!address && !!station.latitude && !!station.longitude) {
+      if (address && address !== '') {
+        this.setState({ address });
+        return;
+      } else if (!address && !!station.latitude && !!station.longitude) {
         const latLng = { lat: station.latitude, lng: station.longitude };
         this.geocoder.geocode({ location: latLng }, (results, status) => {
           if (status === 'OK') {
