@@ -1,14 +1,17 @@
 .floating-dropdown {
   z-index: 5;
   position: fixed;
+  top: 8%;
 }
 
 .floating-dropdown.Locations {
   left: 5%;
+  background: radial-gradient(rgba(224,224,224,1) 25%, rgba(0,0,0,0) 90%);
 }
 
 .floating-dropdown.Networks {
   right: 5%;
+  background: radial-gradient(rgba(224,224,224,1) 25%, rgba(0,0,0,0) 90%);
 }
 
 .floating-dropdown.closed {

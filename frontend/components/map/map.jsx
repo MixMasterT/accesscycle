@@ -156,7 +156,6 @@ class Map extends React.Component {
   }
 
   centerMapOnMarkers(markers) {
-    console.log('maps -- centerMapOnMarkers called');
     const bounds = new google.maps.LatLngBounds();
     markers.forEach((marker) => {
       // const pos = getCoordsObj(marker.getPosition());
@@ -173,7 +172,6 @@ class Map extends React.Component {
   render() {
     return (
       <div className='map-component'>
-        <h2> Bicycle Network Map </h2>
         <div className="map" ref={ map => this.mapNode = map }
       ></div>
       </div>
