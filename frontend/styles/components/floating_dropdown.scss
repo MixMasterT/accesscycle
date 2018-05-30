@@ -2,6 +2,17 @@
   z-index: 5;
   position: fixed;
   top: 8%;
+  .dropdown-title {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    transition: all .4s ease-in-out;
+  }
+
+  .dropdown-title:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+
+  }
 }
 
 .floating-dropdown.Locations {

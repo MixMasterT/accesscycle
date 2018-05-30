@@ -26,8 +26,8 @@ class Map extends React.Component {
 
   componentDidMount() {
     let mapOptions = {
-      center: { lat: 37.773972, lng: -122.431297 },
-      zoom: 12,
+      center: { lat: 0, lng: -90.2934337 },
+      zoom: 3,
       styles: mapStyles,
     }
 
@@ -152,7 +152,6 @@ class Map extends React.Component {
       label: 'H',
       icon: image
     })
-    this.map.setZoom(13);
   }
 
   centerMapOnMarkers(markers) {
