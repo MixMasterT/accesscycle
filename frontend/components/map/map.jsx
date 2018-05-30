@@ -40,8 +40,6 @@ class Map extends React.Component {
       }
     })
 
-    this.geocoder = new google.maps.Geocoder();
-
     this.map = new google.maps.Map(this.mapNode, mapOptions)
 
     google.maps.event.addListener(this.map, 'idle', () => {

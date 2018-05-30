@@ -6,6 +6,9 @@ export const receiveStation = station => ({
   station,
 });
 
-export const clearStation = () => ({
-  type: CLEAR_STATION
-});
+export const clearStation = () => {
+  console.log('clearStation called!');  
+  return({
+    type: CLEAR_STATION
+  });
+}

@@ -44,7 +44,7 @@ class Main extends React.Component {
               <Station />
             </div>
             <FloatingDropdown title="Networks">
-              <Networks />
+              <Networks geocoder={this.geocoder} />
             </FloatingDropdown>
           </div>
         </main>
