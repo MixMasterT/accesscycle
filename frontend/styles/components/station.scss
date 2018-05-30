@@ -1,4 +1,10 @@
 .station {
+  z-index: 5;
+  position: fixed;
+  bottom: 10%;
+  left: 25%;
+  width: 50%;
+  background: radial-gradient(rgba(224,224,224,1) 25%, rgba(0,0,0,0) 90%);
   h2 {
     margin-top: 1em;
     font-size: 1.4em;
