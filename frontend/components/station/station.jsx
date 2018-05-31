@@ -65,7 +65,7 @@ class Station extends React.Component {
             <tbody>
               <tr>
                 <td>{station.free_bikes}</td>
-                <td>{station.empty_slots}</td>
+                <td>{station.empty_slots || 'n/a'}</td>
                 <td>{this.state.address || 'address not provided'}</td>
               </tr>
             </tbody>
