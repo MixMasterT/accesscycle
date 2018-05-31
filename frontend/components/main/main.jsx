@@ -32,41 +32,24 @@ class Main extends React.Component {
   }
 
   render() {
-    if (this.state.width > 700) {
-      return (
-        <main className='main'>
-          <div className='main-components'>
-            <FloatingDropdown title="Locations">
-              <Locations />
-            </FloatingDropdown>
-            <div className='center'>
-              <Map />
-              <Station />
-            </div>
-            <FloatingDropdown title="Networks">
-              <Networks geocoder={this.geocoder} />
-            </FloatingDropdown>
+    return (
+      <main className='main'>
+        <div className='main-components'>
+          <FloatingDropdown title="Locations">
+            <Locations />
+          </FloatingDropdown>
+          <div className='center'>
+            <Map />
+            <Station />
           </div>
-        </main>
-      );
-    } else {
-      return (
-        <main className='main-narrow'>
-          <div className='components'>
-            <div className='top'>
-              <Map />
-            </div>
-
-            <div className='second'>
-              <Locations />
-              <Station />
-              <Networks />
-            </div>
-          </div>
-        </main>
-      );
-    }
+          <FloatingDropdown title="Networks">
+            <Networks geocoder={this.geocoder} />
+          </FloatingDropdown>
+        </div>
+      </main>
+    );
   }
 }
+
 
 export default Main;

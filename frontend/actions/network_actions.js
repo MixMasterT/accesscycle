@@ -27,6 +27,10 @@ export const getNetwork = (networkId) => dispatch => (
 
 export const getNetworks = () => dispatch => (
   networkUtils.fetchNetworks()
-    .then((networks) => dispatch(receiveNetworks(networks)))
+    .then((networks) => {
+      dispatch(receiveNetworks(networks))
+      return networks;
+    })
+    .then((networks) => dispatch(setNearbyNetworks(networks.networks)))
     .fail((err) => console.log(err))
 );

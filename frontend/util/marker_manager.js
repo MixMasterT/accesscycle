@@ -14,15 +14,18 @@ class MarkerManager {
   }
 
   addMarkerArray(objectsToMark, defineMarkerFunction) {
+    console.log('addMarkerArray called!');
     // first clear out old markers
     this.clearMarkers();
     // definemMarkerFunction must specify a position property as 'google
     // map coords' and take a second argument that is the map
-    objectsToMark.forEach(obj => {
-      const marker = defineMarkerFunction(obj, this.map, this.markIcon);
+    if (Array.isArray(objectsToMark)) {
+      objectsToMark.forEach(obj => {
+        const marker = defineMarkerFunction(obj, this.map, this.markIcon);
 
-      this._addMarker(marker);
-    });
+        this._addMarker(marker);
+      });
+    }
   }
 
   clearMarkers() {
