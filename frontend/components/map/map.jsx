@@ -16,6 +16,8 @@ class Map extends React.Component {
     this.state = {
       locationMarkers: [],
       currentNetwork: [],
+      width: window.innerWidth,
+      height: window.innerHeight,
     }
 
     this.addHomeMarker = this.addHomeMarker.bind(this);
@@ -29,6 +31,7 @@ class Map extends React.Component {
       center: { lat: 0, lng: -90.2934337 },
       zoom: 3,
       styles: mapStyles,
+
     }
 
     navigator.geolocation.getCurrentPosition((loc) => {
@@ -51,6 +54,15 @@ class Map extends React.Component {
         southWest: getCoordsObj(southWest)
       }
       this.props.updateBounds(bounds);
+    })
+
+    google.maps.event.addListener(this.map, 'resize', () => {
+      const height = $(this.map.getDiv()).children().eq(0).height();
+      const width = $(this.map.getDiv()).children().eq(0).width();
+      this.setState({
+        height,
+        width,
+      });
     })
 
     const bikeIcon = {
@@ -99,12 +111,10 @@ class Map extends React.Component {
       if (this.props.networkDetail !== newProps.networkDetail) {
         this.updateCurrentNetworkMarkers(newProps.networkDetail);
       }
-
     }
   }
 
   updateLocationMarkers(networkArray) {
-    console.log('updateLocationMarkers called');
     // MarkerManager.addMarkerArray requires two arguments, an array of ojbects
     // to be marked, and a function that defines the markers. The defineMarkerFunction
     // requires three arguments: 1 object to mark, 2 map, 3 mark. The MarkerManager
@@ -122,11 +132,12 @@ class Map extends React.Component {
         id: network.id,
       })
     ))
-    this.centerMapOnMarkers(this.locationMarkerManager.markers);
+    if (networkArray.length < 200) {
+      this.centerMapOnMarkers(this.locationMarkerManager.markers);
+    }
   }
 
   updateCurrentNetworkMarkers(network) {
-    console.log('update current network markers called');
     if (!network) { return; }
     this.stationMarkerManager.addMarkerArray(network.stations, (station, map, mark) => (
       new google.maps.Marker({
@@ -160,15 +171,25 @@ class Map extends React.Component {
       bounds.extend(marker.position);
     })
     this.map.fitBounds(bounds);
+    // const center = bounds.getCenter();
+    // const centerCoords = getCoordsObj(center);
+    // console.log('center ->', center.lat(), center.lng());
+    // this.map.setCenter(centerCoords);
 
     if (this.map.getZoom() > 20) {
-      this.map.setZoom(5);
+      this.map.setZoom(7);
     }
   }
 
   render() {
     return (
-      <div className='map-component'>
+      <div
+        className='map-component'
+        style={{
+          width: this.state.width,
+          height: this.state.height,
+        }}
+      >
         <div className="map" ref={ map => this.mapNode = map }
       ></div>
       </div>

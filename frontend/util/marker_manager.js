@@ -14,7 +14,6 @@ class MarkerManager {
   }
 
   addMarkerArray(objectsToMark, defineMarkerFunction) {
-    console.log('addMarkerArray called!');
     // first clear out old markers
     this.clearMarkers();
     // definemMarkerFunction must specify a position property as 'google

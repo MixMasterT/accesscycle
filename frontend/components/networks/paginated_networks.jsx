@@ -51,11 +51,9 @@ class PaginatedNetworks extends React.Component {
     const list = props.networks;
     const page = this.state.page;
     const recordsPerPage = this.state.recordsPerPage;
-    console.log('recordsPerPage', recordsPerPage);
     const start = page * recordsPerPage;
     const end = start + recordsPerPage;
     const pageLimit = Math.floor(list.length / recordsPerPage);
-    console.log('pageLimit', pageLimit);
     return (
       <div className="network-names-container">
         <ul>{list.slice(start, end)}</ul>

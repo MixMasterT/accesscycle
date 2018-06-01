@@ -11,6 +11,7 @@ const mapStateToProps = (state, ownProps) => ({
   country: state.country,
   nearbyNetworks: state.nearbyNetworks,
   networkDetail: state.networkDetail.network,
+  bounds: state.mapBounds,
 });
 
 const mapDispatchToProps = dispatch => ({

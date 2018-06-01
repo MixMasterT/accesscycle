@@ -9,7 +9,9 @@ export const citiesFromNetworks = (networksArr) => {
         // if (!cities.has(`${network.location.city}, ${
         //     countryNameMap[network.location.country]
         //   }`)) {
+        if (network.location && network.location.country) {
           cities.add(`${network.location.city},${countryNameMap[network.location.country]}`);
+        }
       }
     }
   });
@@ -47,7 +49,9 @@ export const networksByCountry = (country, networksArr) => {
       countryCode = k;
     }
   });
-  return networksArr.filter((network) => network.location.country === countryCode);
+  return networksArr.filter((network) => {
+    return network.location && network.location.country === countryCode
+  });
 };
 
 // gives array of network objects in the rectangular latlng bounds
