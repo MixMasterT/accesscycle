@@ -11,23 +11,25 @@ class Main extends React.Component {
     super(props);
 
     this.state = {
-      width: window.innerWidth
+      width: window.innerWidth,
+      height: window.innerHeight,
     }
-    this.getWidth = this.getWidth.bind(this);
+    this.getDimensions = this.getDimensions.bind(this);
   }
 
   componentDidMount() {
     this.props.getNetworks();
-    window.addEventListener('resize', this.getWidth);
+    window.addEventListener('resize', this.getDimensions);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.getWidth);
+    window.removeEventListener('resize', this.getDimensions);
   }
 
-  getWidth() {
+  getDimensions() {
     this.setState({
-      width: window.innerWidth
+      width: window.innerWidth,
+      height: window.innerHeight,
     })
   }
 
@@ -39,7 +41,7 @@ class Main extends React.Component {
             <Locations />
           </FloatingDropdown>
           <div className='center'>
-            <Map />
+            <Map width={this.state.width} height={this.state.height} />
             <Station />
           </div>
           <FloatingDropdown title="Networks">

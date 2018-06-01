@@ -16,8 +16,6 @@ class Map extends React.Component {
     this.state = {
       locationMarkers: [],
       currentNetwork: [],
-      width: window.innerWidth,
-      height: window.innerHeight,
     }
 
     this.addHomeMarker = this.addHomeMarker.bind(this);
@@ -63,6 +61,8 @@ class Map extends React.Component {
         height,
         width,
       });
+      console.log('width:', width);
+      console.log('height', height);
     })
 
     const bikeIcon = {
@@ -182,15 +182,18 @@ class Map extends React.Component {
   }
 
   render() {
+    console.log('map component state', this.state);
     return (
       <div
         className='map-component'
-        style={{
-          width: this.state.width,
-          height: this.state.height,
-        }}
       >
-        <div className="map" ref={ map => this.mapNode = map }
+        <div
+          className="map"
+          ref={ map => this.mapNode = map }
+          style={{
+            width: this.props.width,
+            height: this.props.height,
+          }}
       ></div>
       </div>
     )
