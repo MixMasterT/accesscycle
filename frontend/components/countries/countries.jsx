@@ -13,8 +13,8 @@ class Countries extends React.Component {
   render() {
     return (
       <div className='countries'>
-        <h3>Countries with Listed Bicycle Rental</h3>
         <ul>
+          <li onClick={this.props.getNetworks}>All Countries</li>
           {this.props.countriesList.map((country, idx) => (
             <li key={idx} onClick={this.handleCountryClick(country)}>
               {country}

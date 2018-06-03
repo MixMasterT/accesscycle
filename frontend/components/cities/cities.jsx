@@ -14,8 +14,8 @@ class Cities extends React.Component {
   render() {
     return (
       <div className='cities'>
-        <h3>Cities with Listed Bicycle Rental</h3>
         <ul>
+          <li onClick={this.props.getNetworks}>All Cities</li>
           {this.props.citiesList.map((city) => (
             <li key={city} onClick={this.handleCityClick(city)}>
               {city.replace(",", ", ")}

@@ -29,7 +29,6 @@ class Map extends React.Component {
       center: { lat: 0, lng: -90.2934337 },
       zoom: 3,
       styles: mapStyles,
-
     }
 
     navigator.geolocation.getCurrentPosition((loc) => {
@@ -61,8 +60,6 @@ class Map extends React.Component {
         height,
         width,
       });
-      console.log('width:', width);
-      console.log('height', height);
     })
 
     const bikeIcon = {
@@ -132,8 +129,10 @@ class Map extends React.Component {
         id: network.id,
       })
     ))
-    if (networkArray.length < 200) {
+    if (networkArray.length < 500) {
       this.centerMapOnMarkers(this.locationMarkerManager.markers);
+    } else {
+      this.map.setZoom(2);
     }
   }
 
@@ -182,7 +181,6 @@ class Map extends React.Component {
   }
 
   render() {
-    console.log('map component state', this.state);
     return (
       <div
         className='map-component'

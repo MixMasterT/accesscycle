@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Countries from './countries.jsx';
 
 import { countriesFromNetworks } from '../../util/selectors';
+import { getNetworks } from '../../actions/network_actions';
 import { setCountry } from '../../actions/country_actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -25,6 +26,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   setCountry: (country) => dispatch(setCountry(country)),
+  getNetworks: () => dispatch(getNetworks()),
 });
 
 export default connect(
