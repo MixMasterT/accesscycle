@@ -55,10 +55,6 @@ class Station extends React.Component {
           <table>
             <thead>
               <tr>
-                <th>address</th>
-              </tr>
-
-              <tr>
                 <th>bikes available</th><th>free slots</th><th>address</th>
               </tr>
             </thead>

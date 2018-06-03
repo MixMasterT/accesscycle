@@ -10,7 +10,18 @@ class Locations extends React.Component {
 
     this.state = {
       countries: true,
+      searchTerm: '',
     }
+    this.handleSearchInput = this.handleSearchInput.bind(this);
+    this.clearSearch = this.clearSearch.bind(this);
+  }
+
+  handleSearchInput(e) {
+    this.setState({ searchTerm: e.target.value });
+  }
+
+  clearSearch() {
+    this.setState({ searchTerm: '' });
   }
 
   render() {
@@ -25,6 +36,20 @@ class Locations extends React.Component {
             onClick={ () => this.setState({ countries: false }) }
             className={`select-cities${this.state.countries ? '' : ' active'}`}
           >Cities</div>
+        </div>
+        <div className="search">
+          <input
+            className={`search-box${this.state.searchTerm !== '' ? ' active' : ''}`}
+            type="text"
+            placeholder={`search by ${this.state.countries ? 'country' : 'city'}`}
+            value={this.state.searchTerm}
+            onChange={this.handleSearchInput}
+          />
+          <span
+            className="clear-icon"
+            onClick={this.clearSearch}
+          >&times;</span>
+          <span className="search-icon">&#x1F50D;</span>
         </div>
         { this.state.countries ? <Countries /> : <Cities />}
         <Pagination isCountries={this.state.countries} />
