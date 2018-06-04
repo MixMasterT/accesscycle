@@ -1,4 +1,21 @@
 .floating-content {
+  .search {
+    padding: 0.4em;
+    height: 1.2em;
+    background-color: #DDD;
+    .search-box {
+      background-color: #EEE;
+      padding: 0.2em;
+      margin-bottom: 0.2em;
+    }
+    .clear-icon {
+      cursor: pointer;
+      transition: all .2s ease-in-out;
+    }
+    .clear-icon:hover {
+      color: #999;
+    }
+  }
   .countries, .cities {
     display: flex;
     flex-direction: column;

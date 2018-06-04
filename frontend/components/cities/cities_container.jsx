@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) => {
   let pageStart = cityPage * itemsPerPage;
   let pageEnd = pageStart + itemsPerPage;
   const allCities = citiesFromNetworks(state.networks);
+  // further filter by search term...
   if(pageEnd > allCities.length - 1) {
     pageStart = allCities.length - itemsPerPage;
     pageEnd = allCities.length;

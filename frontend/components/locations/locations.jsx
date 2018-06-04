@@ -38,10 +38,11 @@ class Locations extends React.Component {
           >Cities</div>
         </div>
         <div className="search">
+          <span className="search-icon">&#x1F50D;</span>
           <input
             className={`search-box${this.state.searchTerm !== '' ? ' active' : ''}`}
             type="text"
-            placeholder={`search by ${this.state.countries ? 'country' : 'city'}`}
+            placeholder={`search ${this.state.countries ? 'countr' : 'cit'}ies`}
             value={this.state.searchTerm}
             onChange={this.handleSearchInput}
           />
@@ -49,7 +50,6 @@ class Locations extends React.Component {
             className="clear-icon"
             onClick={this.clearSearch}
           >&times;</span>
-          <span className="search-icon">&#x1F50D;</span>
         </div>
         { this.state.countries ? <Countries /> : <Cities />}
         <Pagination isCountries={this.state.countries} />

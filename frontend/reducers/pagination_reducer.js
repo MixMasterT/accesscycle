@@ -12,7 +12,7 @@ import { citiesFromNetworks,
          countriesFromNetworks } from '../util/selectors';
 
 let _defaultState = {
-  itemsPerPage: 25,
+  itemsPerPage: 23,
   totalCityPages: 0,
   totalCountryPages: 0,
   currentCityPage: 0,
