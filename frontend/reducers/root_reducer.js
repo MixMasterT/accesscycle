@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import filterReducer from './filter_reducer.js';
 import paginationReducer from './pagination_reducer.js';
 import stationReducer from './station_reducer.js';
 
@@ -11,6 +12,7 @@ import networksReducer from './networks_reducer.js';
 
 
 const rootReducer = combineReducers({
+  filter: filterReducer,
   pagination: paginationReducer,
   mapBounds: mapBoundsReducer,
   networks: networksReducer,

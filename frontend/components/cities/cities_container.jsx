@@ -11,8 +11,12 @@ const mapStateToProps = (state, ownProps) => {
   const itemsPerPage = state.pagination.itemsPerPage;
   let pageStart = cityPage * itemsPerPage;
   let pageEnd = pageStart + itemsPerPage;
-  const allCities = citiesFromNetworks(state.networks);
-  // further filter by search term...
+  let allCities = citiesFromNetworks(state.networks);
+  if (state.filter) {
+    allCities = allCities.filter((city) => {
+      return -1 < city.indexOf(state.filter);
+    })
+  }
   if(pageEnd > allCities.length - 1) {
     pageStart = allCities.length - itemsPerPage;
     pageEnd = allCities.length;

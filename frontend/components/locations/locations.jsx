@@ -1,4 +1,5 @@
 import React from 'react';
+import { debounce } from 'lodash';
 
 import Cities from '../cities/cities_container';
 import Countries from '../countries/countries_container';
@@ -14,13 +15,17 @@ class Locations extends React.Component {
     }
     this.handleSearchInput = this.handleSearchInput.bind(this);
     this.clearSearch = this.clearSearch.bind(this);
+    this.setFilter = debounce(this.props.setFilter, 300);
   }
 
   handleSearchInput(e) {
-    this.setState({ searchTerm: e.target.value });
+    this.setState({ searchTerm: e.target.value }, () => {
+      this.setFilter(this.state.searchTerm);
+    });
   }
 
   clearSearch() {
+    this.props.clearFilter();
     this.setState({ searchTerm: '' });
   }
 

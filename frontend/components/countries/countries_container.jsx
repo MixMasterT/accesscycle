@@ -11,8 +11,12 @@ const mapStateToProps = (state, ownProps) => {
   const itemsPerPage = state.pagination.itemsPerPage;
   let pageStart = countryPage * itemsPerPage;
   let pageEnd = pageStart + itemsPerPage;
-  const allCountries = countriesFromNetworks(state.networks);
-  // further filter by search term
+  let allCountries = countriesFromNetworks(state.networks);
+  if (state.filter) {
+    allCountries = allCountries.filter((country) => {
+      return -1 < country.indexOf(state.filter);
+    })
+  }
   if (pageEnd > allCountries.length - 1) {
     pageStart = allCountries.length - itemsPerPage;
     pageEnd = allCountries.length;
