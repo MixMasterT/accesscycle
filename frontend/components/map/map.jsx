@@ -22,6 +22,7 @@ class Map extends React.Component {
     this.updateLocationMarkers = this.updateLocationMarkers.bind(this);
     this.updateCurrentNetworkMarkers = this.updateCurrentNetworkMarkers.bind(this);
     this.centerMapOnMarkers = this.centerMapOnMarkers.bind(this);
+    this.handleStationClick = this.handleStationClick.bind(this);
   }
 
   componentDidMount() {
@@ -75,6 +76,7 @@ class Map extends React.Component {
       'bicycle': bikeIcon,
       'network': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=N|ffff00',
       'station': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=J|FFFF00',
+      'currentStation': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=S|FF6666',
     }
 
     this.locationMarkerManager = new MarkerManager(
@@ -85,9 +87,16 @@ class Map extends React.Component {
 
     this.stationMarkerManager = new MarkerManager(
       this.map,
-      (marker) => this.props.receiveStation(marker.station),
+      (marker) => this.handleStationClick(marker),
       markers['bicycle']
     )
+
+    this.currentStationMarkerManager = new MarkerManager(
+      this.map,
+      (marker) => null,
+      markers['currentStation']
+    )
+    this.markers = markers;
   }
 
   componentWillReceiveProps(newProps) {
@@ -112,6 +121,7 @@ class Map extends React.Component {
   }
 
   updateLocationMarkers(networkArray) {
+    this.currentStationMarkerManager.clearMarkers();
     // MarkerManager.addMarkerArray requires two arguments, an array of ojbects
     // to be marked, and a function that defines the markers. The defineMarkerFunction
     // requires three arguments: 1 object to mark, 2 map, 3 mark. The MarkerManager
@@ -138,6 +148,7 @@ class Map extends React.Component {
 
   updateCurrentNetworkMarkers(network) {
     if (!network) { return; }
+    this.currentStationMarkerManager.clearMarkers();
     this.stationMarkerManager.addMarkerArray(network.stations, (station, map, mark) => (
       new google.maps.Marker({
         position: new google.maps.LatLng(station.latitude, station.longitude),
@@ -159,25 +170,30 @@ class Map extends React.Component {
       position: { lat, lng },
       label: 'H',
       icon: image
-    })
+    });
   }
 
   centerMapOnMarkers(markers) {
     const bounds = new google.maps.LatLngBounds();
     markers.forEach((marker) => {
-      // const pos = getCoordsObj(marker.getPosition());
-      // console.log(pos);
       bounds.extend(marker.position);
     })
     this.map.fitBounds(bounds);
-    // const center = bounds.getCenter();
-    // const centerCoords = getCoordsObj(center);
-    // console.log('center ->', center.lat(), center.lng());
-    // this.map.setCenter(centerCoords);
-
     if (this.map.getZoom() > 20) {
       this.map.setZoom(7);
     }
+  }
+
+  handleStationClick(marker) {
+    this.props.receiveStation(marker.station);
+    const currentStationMarker = new google.maps.Marker({
+      map: this.map,
+      position: marker.position,
+      icon: this.markers.currentStation,
+      title: `Selected Station: ${marker.title}`,
+    });
+    this.currentStationMarkerManager.clearMarkers();
+    this.currentStationMarkerManager._addMarker(currentStationMarker);
   }
 
   render() {

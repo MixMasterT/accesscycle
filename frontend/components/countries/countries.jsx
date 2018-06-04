@@ -10,6 +10,7 @@ class Countries extends React.Component {
   handleCountryClick(country) {
     return e => this.props.setCountry(country);
   }
+  
   render() {
     return (
       <div className='countries'>
