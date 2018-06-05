@@ -29,10 +29,11 @@
   },
   "scripts": {
     "start": "webpack-dev-server --env development --hot --inline --history-api-fallback",
-    "build": "webpack --env production",
+    "build": "webpack -p --env production",
     "lint:js": "eslint app/ webpack.*.js --cache"
   },
   "devDependencies": {
+    "redux-devtools-extension": "^2.13.2",
     "webpack-dev-server": "^2.4.5"
   }
 }
