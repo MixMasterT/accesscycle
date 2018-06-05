@@ -2,7 +2,7 @@ var path = require("path");
 
 module.exports = {
   context: __dirname,
-  entry: "./frontend/world_bikes.jsx",
+  entry: "./frontend/world_bikes.jsx",  // Adjust this line to match your entry file name
   output: {
     path: path.join(__dirname, 'build'),
     filename: "bundle.js",

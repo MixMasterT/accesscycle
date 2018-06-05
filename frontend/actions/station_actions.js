@@ -7,6 +7,7 @@ export const receiveStation = station => ({
 });
 
 export const clearStation = () => {
+  console.log('clearStation called!');  
   return({
     type: CLEAR_STATION
   });

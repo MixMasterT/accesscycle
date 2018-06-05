@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  clearStation: () => dispatch(clearStation()),
+  clearStation: () => dispatch(clearStation()), 
 });
 
 export default connect(
