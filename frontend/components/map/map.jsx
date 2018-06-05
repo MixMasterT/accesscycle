@@ -74,9 +74,9 @@ class Map extends React.Component {
 
     const markers = {
       'bicycle': bikeIcon,
-      'network': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=N|ffff00',
-      'station': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=J|FFFF00',
-      'currentStation': 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=S|FF6666',
+      'network': 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=N|ffff00',
+      'station': 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=J|FFFF00',
+      'currentStation': 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=S|FF6666',
     }
 
     this.locationMarkerManager = new MarkerManager(
@@ -163,7 +163,7 @@ class Map extends React.Component {
 
   addHomeMarker(lat, lng) {
     if (this.state.homeMarker) { this.state.homeMarker.setMap(null); }
-    const image = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+    const image = 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png';
     const otherImage = new google.maps.Marker({
       map: this.map,
       animation: google.maps.Animation.BOUNCE,
