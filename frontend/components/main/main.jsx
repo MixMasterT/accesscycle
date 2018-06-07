@@ -15,6 +15,7 @@ class Main extends React.Component {
       height: window.innerHeight,
     }
     this.getDimensions = this.getDimensions.bind(this);
+    this.clearStationMarker = this.clearStationMarker.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +34,19 @@ class Main extends React.Component {
     })
   }
 
+  clearStationMarker() {
+    console.log('main.clearStation called!');
+    console.log('this.refs', this.refs);
+    if (this.refs.map) {
+      console.log('this.refs.map exists, so calling this.refs.map.clearStationMarker');
+      this.refs.map
+        ._reactInternalInstance
+        ._renderedComponent
+        ._instance
+        .clearStationMarker();
+    }
+  }
+
   render() {
     return (
       <main className='main'>
@@ -41,8 +55,14 @@ class Main extends React.Component {
             <Locations />
           </FloatingDropdown>
           <div className='center'>
-            <Map width={this.state.width} height={this.state.height} />
-            <Station />
+            <Map
+              ref="map"
+              width={this.state.width}
+              height={this.state.height}
+            />
+            <Station
+              clearStationMarker={this.clearStationMarker}
+            />
           </div>
           <FloatingDropdown title="Networks">
             <Networks geocoder={this.geocoder} />

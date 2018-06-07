@@ -23,6 +23,7 @@ class Map extends React.Component {
     this.updateCurrentNetworkMarkers = this.updateCurrentNetworkMarkers.bind(this);
     this.centerMapOnMarkers = this.centerMapOnMarkers.bind(this);
     this.handleStationClick = this.handleStationClick.bind(this);
+    this.clearStationMarker = this.clearStationMarker.bind(this);
   }
 
   componentDidMount() {
@@ -192,8 +193,12 @@ class Map extends React.Component {
       icon: this.markers.currentStation,
       title: `Selected Station: ${marker.title}`,
     });
-    this.currentStationMarkerManager.clearMarkers();
+    this.clearStationMarker();
     this.currentStationMarkerManager._addMarker(currentStationMarker);
+  }
+
+  clearStationMarker() {
+    this.currentStationMarkerManager.clearMarkers();
   }
 
   render() {
