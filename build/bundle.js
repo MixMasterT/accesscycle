@@ -29559,11 +29559,10 @@ var Main = function (_React$Component) {
   }, {
     key: 'clearStationMarker',
     value: function clearStationMarker() {
-      console.log('main.clearStation called!');
-      console.log('this.refs', this.refs);
       if (this.refs.map) {
-        console.log('this.refs.map exists, so calling this.refs.map.clearStationMarker');
+        // definite 'code smell' here, but works to allow clearing from station component
         this.refs.map._reactInternalInstance._renderedComponent._instance.clearStationMarker();
+        // consider fixing by moving markerManagers up to Main from Map...
       }
     }
   }, {
@@ -30613,7 +30612,7 @@ var TopBar = function TopBar(props) {
       _react2.default.createElement(
         'h3',
         null,
-        'Find commuter bike access around the world'
+        'Commuter bikes around the world'
       )
     ),
     _react2.default.createElement(

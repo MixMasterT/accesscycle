@@ -3,7 +3,7 @@ import React from 'react';
 const TopBar = (props) => (
   <div className='top-bar'>
     <div className='tagline'>
-      <h3>Find commuter bike access around the world</h3>
+      <h3>Commuter bikes around the world</h3>
     </div>
     <div className='title-row'>
       <img
