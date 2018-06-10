@@ -4,10 +4,10 @@ import { UPDATE_COUNTRY_PAGE,
          UPDATE_CITY_PAGE,
          SET_TOTAL_COUNTRY_PAGES,
          SET_TOTAL_CITY_PAGES,
+         SET_ITEMS_PER_PAGE,
        } from '../actions/pagination_actions.js'
 
 import { RECEIVE_NETWORKS } from '../actions/network_actions.js'
-
 import { citiesFromNetworks,
          countriesFromNetworks } from '../util/selectors';
 
@@ -39,6 +39,9 @@ const paginationReducer = (state = _defaultState, action) => {
       return merge({}, state, {totalCountryPages: action.totalPages});
     case SET_TOTAL_CITY_PAGES:
       return merge({}, state, {totalCityPages: action.totalPages});
+    case SET_ITEMS_PER_PAGE:
+      // TODO : crunch numbers to update tota City Pages and total Country pages here as well..
+      return merge({}, state, {itemsPerPage: action.itemsPerPage});
     default:
       return state;
   }
