@@ -7,10 +7,13 @@ class Station extends React.Component {
     this.state = {
       address: ''
     }
+    this.clearStation = this.clearStation.bind(this);
   }
+
   componentDidMount() {
     this.geocoder = new google.maps.Geocoder();
   }
+
   componentWillReceiveProps(newProps) {
     if (newProps.station.name !== this.props.station.name) {
       const station = newProps.station;
@@ -34,6 +37,12 @@ class Station extends React.Component {
       }
     }
   }
+
+  clearStation() {
+    this.props.clearStationMarker();
+    this.props.clearStation();
+  }
+
   render() {
     const station = this.props.station;
     const clearStation = this.props.clearStation;
@@ -49,7 +58,7 @@ class Station extends React.Component {
           </h2>
           <span
             className="close-icon"
-            onClick={clearStation}
+            onClick={this.clearStation}
             >&times;
           </span>
           <table>

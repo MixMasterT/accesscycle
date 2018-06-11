@@ -13,8 +13,10 @@ const mapStateToProps = (state, ownProps) => {
   let pageEnd = pageStart + itemsPerPage;
   let allCities = citiesFromNetworks(state.networks);
   if (state.filter) {
+    const filter = state.filter.toLowerCase();
     allCities = allCities.filter((city) => {
-      return -1 < city.indexOf(state.filter);
+      const cityName = city.toLowerCase();
+      return -1 < cityName.indexOf(filter);
     })
   }
   if(pageEnd > allCities.length - 1) {
