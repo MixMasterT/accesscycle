@@ -21,12 +21,16 @@ let _defaultState = {
 
 const paginationReducer = (state = _defaultState, action) => {
   Object.freeze(state);
+  let cities = null;
+  let countries = null;
+  let networks = null;
+  let itemsPerPage = null;
   switch(action.type) {
     case RECEIVE_NETWORKS:
-      const networks = action.networks.networks;
-      const itemsPerPage = state.itemsPerPage;
-      const cities = citiesFromNetworks(networks);
-      const countries = countriesFromNetworks(networks);
+      networks = action.networks.networks;
+      itemsPerPage = state.itemsPerPage;
+      cities = citiesFromNetworks(networks);
+      countries = countriesFromNetworks(networks);
       return merge({}, state, {
         totalCityPages: Math.floor(cities.length / itemsPerPage),
         totalCountryPages: Math.floor(countries.length / itemsPerPage),
@@ -40,8 +44,15 @@ const paginationReducer = (state = _defaultState, action) => {
     case SET_TOTAL_CITY_PAGES:
       return merge({}, state, {totalCityPages: action.totalPages});
     case SET_ITEMS_PER_PAGE:
-      // TODO : crunch numbers to update tota City Pages and total Country pages here as well..
-      return merge({}, state, {itemsPerPage: action.itemsPerPage});
+      cities = citiesFromNetworks(action.networks);
+      countries = countriesFromNetworks(action.networks);
+      return merge({}, state, {
+        itemsPerPage: action.itemsPerPage,
+        totalCityPages: Math.floor(cities.length / action.itemsPerPage),
+        totalCountryPages: Math.floor(countries.length / action.itemsPerPage),
+        currentCityPage: 0,
+        currentCityPage: 0,
+      });
     default:
       return state;
   }

@@ -20744,9 +20744,6 @@ var citiesFromNetworks = exports.citiesFromNetworks = function citiesFromNetwork
   networksArr.forEach(function (network) {
     if (network.location) {
       if (network.location.city) {
-        // if (!cities.has(`${network.location.city}, ${
-        //     countryNameMap[network.location.country]
-        //   }`)) {
         if (network.location && network.location.country) {
           cities.add(network.location.city + "," + countryNameMap[network.location.country]);
         }
@@ -22051,11 +22048,17 @@ var setTotalCityPages = exports.setTotalCityPages = function setTotalCityPages(t
   };
 };
 
-var setItemsPerPage = exports.setItemsPerPage = function setItemsPerPage(itemsPerPage) {
-  console.log('setItemsPerPage called (Action)', itemsPerPage);
+var setItemsPerPage = exports.setItemsPerPage = function setItemsPerPage(itemsPerPage, networks) {
   return {
     type: SET_ITEMS_PER_PAGE,
-    itemsPerPage: itemsPerPage
+    itemsPerPage: itemsPerPage,
+    networks: networks
+  };
+};
+
+var updateItemsPerPage = exports.updateItemsPerPage = function updateItemsPerPage(n) {
+  return function (dispatch, getState) {
+    return dispatch(setItemsPerPage(n, getState().networks));
   };
 };
 
@@ -24169,8 +24172,10 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var pageEnd = pageStart + itemsPerPage;
   var allCities = (0, _selectors.citiesFromNetworks)(state.networks);
   if (state.filter) {
+    var filter = state.filter.toLowerCase();
     allCities = allCities.filter(function (city) {
-      return -1 < city.indexOf(state.filter);
+      var cityName = city.toLowerCase();
+      return -1 < cityName.indexOf(filter);
     });
   }
   if (pageEnd > allCities.length - 1) {
@@ -24233,8 +24238,10 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var pageEnd = pageStart + itemsPerPage;
   var allCountries = (0, _selectors.countriesFromNetworks)(state.networks);
   if (state.filter) {
+    var filter = state.filter.toLowerCase();
     allCountries = allCountries.filter(function (country) {
-      return -1 < country.indexOf(state.filter);
+      var countryName = country.toLowerCase();
+      return -1 < countryName.indexOf(filter);
     });
   }
   if (pageEnd > allCountries.length - 1) {
@@ -29553,7 +29560,6 @@ var Main = function (_React$Component) {
 
       this.props.getNetworks();
       window.addEventListener('resize', function () {
-        console.log('resize event heard...');
         _this2.getDimensions();
       });
     }
@@ -29565,7 +29571,6 @@ var Main = function (_React$Component) {
   }, {
     key: 'getDimensions',
     value: function getDimensions() {
-      console.log('get getDimensions called');
       var width = window.innerWidth;
       var height = window.innerHeight;
       var itemsPerPage = 23;
@@ -29575,10 +29580,7 @@ var Main = function (_React$Component) {
           itemsPerPage = 10;
         }
       }
-      console.log('width', width);
-      console.log('height', height);
-      console.log('itemsPerPage', itemsPerPage);
-      this.props.setItemsPerPage(itemsPerPage);
+      this.props.updateItemsPerPage(itemsPerPage);
       this.setState({
         width: width,
         height: height
@@ -29672,8 +29674,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     getNetworks: function getNetworks() {
       return dispatch((0, _network_actions.getNetworks)());
     },
-    setItemsPerPage: function setItemsPerPage(n) {
-      return dispatch((0, _pagination_actions.setItemsPerPage)(n));
+    updateItemsPerPage: function updateItemsPerPage(n) {
+      return dispatch((0, _pagination_actions.updateItemsPerPage)(n));
     }
   };
 };
@@ -30943,6 +30945,8 @@ var _network_actions = __webpack_require__(14);
 
 var _selectors = __webpack_require__(30);
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var _defaultState = {
   itemsPerPage: 23,
   totalCityPages: 0,
@@ -30956,12 +30960,16 @@ var paginationReducer = function paginationReducer() {
   var action = arguments[1];
 
   Object.freeze(state);
+  var cities = null;
+  var countries = null;
+  var networks = null;
+  var itemsPerPage = null;
   switch (action.type) {
     case _network_actions.RECEIVE_NETWORKS:
-      var networks = action.networks.networks;
-      var itemsPerPage = state.itemsPerPage;
-      var cities = (0, _selectors.citiesFromNetworks)(networks);
-      var countries = (0, _selectors.countriesFromNetworks)(networks);
+      networks = action.networks.networks;
+      itemsPerPage = state.itemsPerPage;
+      cities = (0, _selectors.citiesFromNetworks)(networks);
+      countries = (0, _selectors.countriesFromNetworks)(networks);
       return (0, _lodash.merge)({}, state, {
         totalCityPages: Math.floor(cities.length / itemsPerPage),
         totalCountryPages: Math.floor(countries.length / itemsPerPage)
@@ -30975,8 +30983,14 @@ var paginationReducer = function paginationReducer() {
     case _pagination_actions.SET_TOTAL_CITY_PAGES:
       return (0, _lodash.merge)({}, state, { totalCityPages: action.totalPages });
     case _pagination_actions.SET_ITEMS_PER_PAGE:
-      // TODO : crunch numbers to update tota City Pages and total Country pages here as well..
-      return (0, _lodash.merge)({}, state, { itemsPerPage: action.itemsPerPage });
+      cities = (0, _selectors.citiesFromNetworks)(action.networks);
+      countries = (0, _selectors.countriesFromNetworks)(action.networks);
+      return (0, _lodash.merge)({}, state, _defineProperty({
+        itemsPerPage: action.itemsPerPage,
+        totalCityPages: Math.floor(cities.length / action.itemsPerPage),
+        totalCountryPages: Math.floor(countries.length / action.itemsPerPage),
+        currentCityPage: 0
+      }, 'currentCityPage', 0));
     default:
       return state;
   }

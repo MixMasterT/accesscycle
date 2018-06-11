@@ -24,10 +24,14 @@ export const setTotalCityPages = (totalPages) => ({
   totalPages
 });
 
-export const setItemsPerPage = (itemsPerPage) => {
-  console.log('setItemsPerPage called (Action)', itemsPerPage);
+export const setItemsPerPage = (itemsPerPage, networks) => {
   return ({
     type: SET_ITEMS_PER_PAGE,
-    itemsPerPage
+    itemsPerPage,
+    networks,
   });
 }
+
+export const updateItemsPerPage = (n) => (dispatch, getState) => (
+  dispatch(setItemsPerPage(n, getState().networks))
+)

@@ -21,7 +21,6 @@ class Main extends React.Component {
   componentDidMount() {
     this.props.getNetworks();
     window.addEventListener('resize', () => {
-      console.log('resize event heard...');
       this.getDimensions();
     });
   }
@@ -31,7 +30,6 @@ class Main extends React.Component {
   }
 
   getDimensions() {
-    console.log('get getDimensions called');
     const width = window.innerWidth;
     const height = window.innerHeight;
     let itemsPerPage = 23;
@@ -41,10 +39,7 @@ class Main extends React.Component {
         itemsPerPage = 10;
       }
     }
-    console.log('width', width);
-    console.log('height', height);
-    console.log('itemsPerPage', itemsPerPage);
-    this.props.setItemsPerPage(itemsPerPage);
+    this.props.updateItemsPerPage(itemsPerPage);
     this.setState({
       width,
       height

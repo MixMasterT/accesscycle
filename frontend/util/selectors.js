@@ -6,9 +6,6 @@ export const citiesFromNetworks = (networksArr) => {
   networksArr.forEach((network) => {
     if (network.location) {
       if (network.location.city) {
-        // if (!cities.has(`${network.location.city}, ${
-        //     countryNameMap[network.location.country]
-        //   }`)) {
         if (network.location && network.location.country) {
           cities.add(`${network.location.city},${countryNameMap[network.location.country]}`);
         }
