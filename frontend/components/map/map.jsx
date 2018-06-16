@@ -3,7 +3,7 @@ import React from 'react';
 import MarkerManager from '../../util/marker_manager';
 
 import mapStyles from './map_styles.json';
-import path from './path';
+import { bikeIconPath, stationIconPath } from './path';
 
 const getCoordsObj = latLng => ({
   lat: latLng.lat(),
@@ -65,39 +65,53 @@ class Map extends React.Component {
     })
 
     const bikeIcon = {
-        path, // path in separate file
-        fillColor: '#000000',
-        fillOpacity: 1,
-        anchor: new google.maps.Point(100, 150),
-        strokeWeight: 0,
-        scale: 0.1
+      path: bikeIconPath,
+      fillColor: '#000000',
+      fillOpacity: 1,
+      anchor: new google.maps.Point(100, 150),
+      strokeWeight: 0,
+      scale: 0.1
+    }
+
+    const stationIcon = {
+      path: stationIconPath, // path in separate file
+      fillColor: '#000000',
+      fillOpacity: 1,
+      anchor: new google.maps.Point(100, 150),
+      strokeWeight: 0,
+      scale: 0.1
     }
 
     const markers = {
       'bicycle': bikeIcon,
+      'station': {
+                    url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(stationIconPath),
+                    scaledSize: new google.maps.Size(40, 40),
+                    optimized: false
+                  },
       'network': 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=N|ffff00',
       'home': 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=N|0000FF',
-      'station': 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=J|FFFF00',
       'currentStation': 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=S|FF6666',
     }
-
+    console.log('bikeIconPath', typeof markers.bicycle, markers.bicycle);
+    console.log('stationIconPath', typeof markers.station, markers.station);
     this.locationMarkerManager = new MarkerManager(
       this.map,
       (marker) => this.props.getNetwork(marker.id),
-      markers['network']
-    )
+      markers.network
+    );
 
     this.stationMarkerManager = new MarkerManager(
       this.map,
       (marker) => this.handleStationClick(marker),
-      markers['bicycle']
-    )
+      markers.station
+    );
 
     this.currentStationMarkerManager = new MarkerManager(
       this.map,
       (marker) => null,
-      markers['currentStation']
-    )
+      markers.currentStation
+    );
     this.markers = markers;
   }
 
