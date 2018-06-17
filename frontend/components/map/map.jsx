@@ -207,12 +207,13 @@ class Map extends React.Component {
     });
     this.clearStationMarker();
     this.currentStationMarkerManager._addMarker(currentStationMarker);
-    console.log('this.props.networkDetail.id', this.props.networkDetail.id);
-    this.props.getNetwork(this.props.networkDetail.id);
+    // console.log('this.props.networkDetail.id', this.props.networkDetail.id);
+    // this.props.getNetwork(this.props.networkDetail.id);
   }
 
   clearStationMarker() {
     this.currentStationMarkerManager.clearMarkers();
+    this.stationMarkerManager.redrawMarkers();
   }
 
   render() {
