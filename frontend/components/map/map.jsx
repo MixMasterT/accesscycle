@@ -86,15 +86,13 @@ class Map extends React.Component {
       'bicycle': bikeIcon,
       'station': {
                     url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(stationIconPath),
-                    scaledSize: new google.maps.Size(40, 40),
-                    optimized: false
+                    scaledSize: new google.maps.Size(60, 60),
+                    optimized: true
                   },
       'network': 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=N|ffff00',
       'home': 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=N|0000FF',
       'currentStation': 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=S|FF6666',
     }
-    console.log('bikeIconPath', typeof markers.bicycle, markers.bicycle);
-    console.log('stationIconPath', typeof markers.station, markers.station);
     this.locationMarkerManager = new MarkerManager(
       this.map,
       (marker) => this.props.getNetwork(marker.id),
@@ -209,6 +207,8 @@ class Map extends React.Component {
     });
     this.clearStationMarker();
     this.currentStationMarkerManager._addMarker(currentStationMarker);
+    console.log('this.props.networkDetail.id', this.props.networkDetail.id);
+    this.props.getNetwork(this.props.networkDetail.id);
   }
 
   clearStationMarker() {
